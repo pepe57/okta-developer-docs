@@ -38,7 +38,7 @@ Create the Okta configuration file and add the keys and values for your app inte
    | `logoutRedirectUri` | The sign-out redirect URI from the app integration that you created, such as `com.okta.integrator-1234567:/` |
    | `redirectUri` | The sign-in redirect URI from the app integration that you created, such as `com.okta.integrator-1234567:/callback` |
    | `scopes` | A string with the value `openid profile offline_access` |
-   | Other | Any additional keys are passed to the `additionalParameters` argument of the initializer. |
+   | Other | Any additional keys are passed to the `additionalParameters` argument of the initializer |
 
 Once you create the `Okta.plist` file, your app can use the default initializer:
 
