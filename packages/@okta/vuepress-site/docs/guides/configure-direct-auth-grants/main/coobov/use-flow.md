@@ -2,25 +2,26 @@ The following sections outline the requests required to implement the out-of-ban
 
 ### Request for out-of-band authentication
 
-Before you can begin this flow, collect the username from the user in a manner of your choosing. Then, make an API call to the Okta [authorization server](/docs/concepts/auth-servers/) `/oob-authenticate` endpoint. Use this endpoint to initiate an authentication flow with an out-of-band factor as the primary factor. Your request should look something like this:
+Before you can begin this flow, collect the username from the user in a manner of your choosing. Then, make an API call to the Okta [authorization server](/docs/concepts/auth-servers/) `/primary-authenticate` endpoint. Use this endpoint to initiate an authentication flow with an out-of-band factor as the primary factor. Your request should look something like this:
 
-> **Note:** The `/oob-authenticate` endpoint doesn't support multifactor authentication.
+> **Note:** The `/primary-authenticate` endpoint doesn't support multifactor authentication.
 
 ```bash
 curl --request POST \
-  --url https://{yourOktaDomain}/oauth2/v1/oob-authenticate \
+  --url https://{yourOktaDomain}/oauth2/v1/primary-authenticate \
   --header 'accept: application/json' \
   --header 'content-type: application/x-www-form-urlencoded' \
-  --data 'client_id={client_id}&login_hint={testuser%40example.com}&channel_hint=push'
+  --data 'client_id={client_id}&login_hint={testuser%40example.com}&channel_hint=push&challenge_hint=urn:okta:params:oauth:grant-type:oob'
 ```
 
 Note the parameters that are passed:
 
-- `client_id`: Matches the client ID of the application that you created in the [Set up your app](#set-up-your-app) section. You can find it at the top of your app's **General** tab.
-- `login_hint`: The email username of a registerd Okta user
+- `client_id`: Matches the client ID of the app that you created in the [Set up your app](#set-up-your-app) section. You can find it at the top of your app's **General** tab.
+- `login_hint`: The email username of a registered Okta user
 - `channel_hint`: The out-of-band channel used by the client. For Okta Verify, use `push`.
+- `challenge_hint`: Specifies that an out-of-band factor is being used as the primary authentication method
 
-For more information on these parameters, see the `/oob-authenticate` [endpoint](https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/oob-authenticate).
+For more information on these parameters, see the `/primary-authenticate` [endpoint](https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/primary-authenticate).
 
 ### OOB response example for Okta Verify Push
 
@@ -51,7 +52,7 @@ In an HTTP 200 response, Okta returns the following parameters:
   }
 ```
 
-Note the parameters included:
+Parameters included:
 
 - `oob_code`: An identifier of a single out-of-band factor transaction. To respond to or check on the status of an out-of-band factor, use this code to identify the factor transaction.
 - `expires_in`: The time, in seconds, until the `oob_code` expires
@@ -72,7 +73,7 @@ curl --request POST \
   --data 'client_id={client_id}&scope=openid%20profile&grant_type=urn:okta:params:oauth:grant-type:oob&oob_code={oob_code}'
 ```
 
-Note the parameters that are passed:
+Parameters that are passed:
 
 - `client_id`: Matches the client ID of the app that you created in the [Set up your app](#set-up-your-app) section. You can find it at the top of your app's **General** tab.
 - `scope`: Must be at least `openid`. See the **Create Scopes** section of the [Create an authorization server guide](/docs/guides/customize-authz-server/main/#create-scopes).

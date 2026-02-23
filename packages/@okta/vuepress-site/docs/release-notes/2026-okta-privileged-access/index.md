@@ -13,13 +13,35 @@ Okta Privileged Access (OPA) is available for both Okta Classic Engine and Okta 
 
 ## February
 
-### Monthly release 2026.02.0
-<!-- Published on: 2026-02-04T12:00:00Z -->
+### Weekly release 2026.02.2
+<!-- Published on: 2026-02-20T12:00:00Z -->
 
-| Change | Expected in Preview Orgs |
-| ------ | ------------------------ |
-| [Enhanced filtering for Active Directory domains API is EA](#enhanced-filtering-for-active-directory-domains-api-is-ea) | February 4, 2026 |
-| [Enhanced filtering for Active Directory accounts API is EA](#enhanced-filtering-for-active-directory-accounts-api-is-ea) | February 4, 2026 |
+| Change | Expected in Preview Orgs | Expected in Production |
+|--------|--------------------------| -----------------------|
+| [Enhanced filtering for Sudo Commands API](#enhanced-filtering-for-the-sudo-commands-api) | February 12, 2026 | February 17, 2026 |
+| [New List Secret Templates endpoint is GA](#new-list-secret-templates-endpoint-is-ga)| February 11, 2026 | February 18, 2026 |
+| [Server Account reveal password configuration is GA](#server-account-reveal-password-configuration-is-ga) | February 19, 2026 |  |
+
+#### Enhanced filtering for the Sudo Commands API
+
+You can now filter the [List all sudo command bundles](https://developer.okta.com/docs/api/openapi/opa/opa/tag/sudo-commands/#tag/sudo-commands/operation/ListSudoCommandBundles) operation using the new `contains` parameter. This parameter filters and limits the results to sudo command bundles where the name matches the provided search string. <!-- OKTA-953347, FF: table_migration_sudo_commands -->
+
+#### New List Secret Templates endpoint is GA
+
+Okta Privileged Access now provides a new [List Secret Templates](https://developer.okta.com/docs/api/openapi/opa/opa/tag/secrets/#tag/secrets/operation/ListSecretTemplates) endpoint in the [Secrets](https://developer.okta.com/docs/api/openapi/opa/opa/tag/secrets/) API. This endpoint allows teams to list and discover available secret templates. <!-- OKTA-971893, FF: pam_secret_templates -->
+
+#### Server Account reveal password configuration is GA
+
+Authorized end users can now retrieve managed server account passwords through the Server Accounts API. See the [Server Account API](https://developer.okta.com/docs/api/openapi/opa/opa/tag/server-accounts/#tag/server-accounts ). <!-- OKTA-963820 Server Accounts for Reveal preview date: Feb 19, 2025, FF: pam_server_account_reveal_password-->
+
+### Monthly release 2026.02.0
+<!-- Published on: 2026-02-11T12:00:00Z -->
+
+| Change | Expected in Preview Orgs | Expected in Production |
+| ------ | ------------------------ | ---------------------- |
+| [Enhanced filtering for Active Directory domains API is EA](#enhanced-filtering-for-active-directory-domains-api-is-ea) | February 4, 2026 | February 11, 2026 |
+| [Enhanced filtering for Active Directory accounts API is EA](#enhanced-filtering-for-active-directory-accounts-api-is-ea) | February 4, 2026 | February 10, 2026 |
+| [New List Secret Templates endpoint is EA](#new-list-secret-templates-endpoint-is-ea) | February 5, 2026 |
 | [Developer documentation updates in 2026.02.0](#developer-documentation-updates-in-2026-02-0) | February 4, 2026 |
 
 #### Enhanced filtering for Active Directory domains API is EA
@@ -29,6 +51,10 @@ You can now filter the [List all Active Directory domains](https://developer.okt
 #### Enhanced filtering for Active Directory accounts API is EA
 
 You can now filter the [List all discovered Active Directory accounts](https://developer.okta.com/docs/api/openapi/opa/opa/tag/active-directory-accounts/#tag/active-directory-accounts/operation/listActiveDirectoryAccounts) operation using the new `contains_account_name_or_assigned_opa_user` parameter. This parameter filters and limits the results to AD accounts where the User Principal Name (UPN), Security Account Manager (SAM) name, or assigned user name that matches the provided search string. <!-- OKTA-977735, FF: pam_active_directory_account_search-->
+
+#### New List Secret Templates endpoint is EA
+
+Okta Privileged Access now provides a new [List Secret Templates](https://developer.okta.com/docs/api/openapi/opa/opa/tag/secrets/#tag/secrets/operation/ListSecretTemplates) endpoint in the [Secrets](https://developer.okta.com/docs/api/openapi/opa/opa/tag/secrets/) API. This endpoint allows teams to list and discover available secret templates. <!-- OKTA-971893, FF: pam_secret_templates-->
 
 #### Developer documentation updates in 2026.02.0
 
