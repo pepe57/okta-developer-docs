@@ -13,6 +13,17 @@ Okta Privileged Access (OPA) is available for both Okta Classic Engine and Okta 
 
 ## February
 
+### Weekly release 2026.02.3
+<!-- Published on: 2026-02-20T12:00:00Z -->
+
+| Change | Expected in Preview Orgs | Expected in Production |
+|--------|--------------------------| -----------------------|
+| [Server Account reveal password configuration](#server-account-reveal-password-configuration) | February 19, 2026 | |
+
+#### Server Account reveal password configuration
+
+Authorized end users can now retrieve managed server account passwords through the Server Accounts API. See the [Server Account API](https://developer.okta.com/docs/api/openapi/opa/opa/tag/server-accounts/#tag/server-accounts ). <!-- OKTA-963820 Server Accounts for Reveal preview date: Feb 19, 2025, FF: pam_server_account_reveal_password-->
+
 ### Weekly release 2026.02.2
 <!-- Published on: 2026-02-20T12:00:00Z -->
 

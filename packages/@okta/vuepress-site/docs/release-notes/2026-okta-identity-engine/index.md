@@ -13,6 +13,19 @@ title: Okta Identity Engine API release notes 2026
 
 ## February
 
+### Weekly release 2026.02.3
+<!-- Published on: 2026-02-20T12:00:00Z -->
+
+| Change | Expected in Preview Orgs |
+|--------|--------------------------|
+| [Bugs fixed in 2026.02.33](#bugs-fixed-in-2026-02-3)| February 25, 2026 |
+
+#### Bugs fixed in 2026.02.3
+
+* You could send customized test emails from the default Okta email domain using the [Send a test email endpoint](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/CustomTemplates/#tag/CustomTemplates/operation/sendTestEmail). (OKTA-115232)
+
+* A request made to the `/primary-authenticate` endpoint with a `challenge_hint` value that was a valid OAuth 2.0 grant type, but not a valid value for the `/primary-authenticate` endpoint, resulted in an incorrect exception being thrown. (OKTA-116277)
+
 ### Weekly release 2026.02.2
 <!-- Published on: 2026-02-20T12:00:00Z -->
 
