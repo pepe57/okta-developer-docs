@@ -63,7 +63,7 @@ Alternatively, the [shared](https://okta.github.io/okta-mobile-swift/development
 
 #### Use one or more configuration files
 
-Similar to the use of the `Okta.plist` file, these options allow you to choose the one or ones you want to use. For example, you could switch between production and sandbox environments.
+Similar to the use of the `Okta.plist` file, these options allow you to choose the ones you want to use. For example, you could switch between production and sandbox environments.
 
 Here are the configuration options:
 
