@@ -18,8 +18,8 @@ Okta Privileged Access (OPA) is available for both Okta Classic Engine and Okta 
 
 | Change | Expected in Preview Orgs | Expected in Production |
 |--------|--------------------------| -----------------------|
-| [Server Account reveal password configuration](#server-account-reveal-password-configuration)| February 19, 2026 |
-|[New System Log event for password rotation changes](#new-system-log-event-for-password-rotation-changes)| February 25, 2026|
+| [Server Account reveal password configuration](#server-account-reveal-password-configuration)| February 19, 2026 | |
+|[New System Log event for password rotation changes](#new-system-log-event-for-password-rotation-changes)| February 25, 2026| |
 
 #### Server Account reveal password configuration
 

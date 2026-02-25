@@ -18,9 +18,9 @@ title: Okta Identity Engine API release notes 2026
 
 | Change | Expected in Preview Orgs |
 |--------|--------------------------|
-| [Bugs fixed in 2026.02.33](#bugs-fixed-in-2026-02-3)| February 25, 2026 |
+| [Bug fixed in 2026.02.3](#bug-fixed-in-2026-02-3)| February 25, 2026 |
 
-#### Bugs fixed in 2026.02.3
+#### Bug fixed in 2026.02.3
 
 * An incorrect error occurred when a user made a request to the `/primary-authenticate` endpoint with a `challenge_hint` value that was a valid OAuth 2.0 grant type, but not a valid value for the `/primary-authenticate` endpoint. (OKTA-1116277)
 
