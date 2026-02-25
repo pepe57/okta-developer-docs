@@ -36,7 +36,7 @@ New API endpoints allow you to list, retrieve, and update these strategies:
 
 • `PATCH /v1/teams/{team_name}/connections/saas_apps/{saas_app_instance_id}`
 
-See the [SaaS Application Accounts](https://developer.okta.com/docs/api/openapi/opa/opa/tag/saas-app-accounts/#tag/saas-app-accounts).
+See [SaaS Application Accounts](https://developer.okta.com/docs/api/openapi/opa/opa/tag/saas-app-accounts/#tag/saas-app-accounts).
 
 ### Weekly release 2026.02.2
 <!-- Published on: 2026-02-20T12:00:00Z -->
