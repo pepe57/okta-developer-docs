@@ -17,8 +17,8 @@ Switch on and define the authentication factors and required user information fo
 #### What you need
 
 * An [Okta Integrator Free Plan org](https://developer.okta.com/signup/)
-* Super admin privileges to modify user profile policies and Universal Directory
-* An existing OIDC app integration in your Okta org
+* Super admin privileges to modify user profile policies and Universal Directory (UD)
+* An existing OIDC app integration in your org
 
 ---
 
@@ -26,15 +26,15 @@ Switch on and define the authentication factors and required user information fo
 
 Self-service registration (SSR) for your apps is turned off in the default user profile policy of your org. This is because many workforce apps are assigned users centrally and therefore don't require a "Create an account" or "Sign-up" button.
 
-Configure an SSR flow in your Okta org so that users can independently sign up using a custom enrollment form and a sign-up link. This configuration enables you to automate group assignments and manage security by enforcing email verification and authenticator enrollment policies.
+Configure an SSR flow in your org so that users can independently sign up using a custom enrollment form and a sign-up link. This configuration enables you to automate group assignments and manage security by enforcing email verification and authenticator enrollment policies.
 
-To enable a sign-up flow for your app and give Okta enough information to power it:
+Complete the following steps to enable a sign-up flow for your app and give Okta enough information to power it:
 
 * Create a user profile policy that enables SSR.
-* Create a profile enrollment policy that defines the user information they need to supply and how it's stored.
+* Define the information that user needs to supply.
 * Create an authenticator enrollment policy that defines the required authenticators for your app.
 
-> **Note**: This doc assumes that you have already designed your SSR flow and are ready to configure it. See [Plan self-service registration flows](https://developer.okta.com/docs/concepts/self-service-registration/) to learn how various policies, Universal Directory, and optional scripts combine to influence the SSR flow. For information on how to plan your SSR flow, see [Design your sign-up flows for different types of users](BRENT).
+<!-- >> **Note**: This doc assumes that you have already designed your SSR flow and are ready to configure it. See [Plan self-service registration flows](/docs/concepts/self-service-registration/) to learn how various policies, Universal Directory, and optional scripts combine to influence the SSR flow. For information on how to plan your SSR flow, see [Design your sign-up flows for different types of users](BRENT). -->
 
 ## Enable SSR with a user profile policy
 
@@ -44,7 +44,7 @@ A user profile policy governs the information needed from a user for an app. It'
 
 Create a user profile policy before configuring your app to authorize user-led account creation and define data collection requirements.
 
-1. Go to **Security** > **User Profile Policies** in the Admin Console.
+1. In the Admin Console, go to **Security** > **User Profile Policies**.
 1. Click **Add user profile policy**.
 1. Enter a policy name, and then click **Save**.
 
@@ -58,6 +58,8 @@ Enable SSR to activate the sign-up link for end users and establish a governance
 1. On the **Enrollment** tab, in the **Profile Enrollment** section, click **Edit**.
 1. Set **Self-service registration** to **Allowed**, and then click **Save**.
 
+> **Note**: Email verification is required by default. If you would prefer to not verify the user's email as part of the registration process, clear that option.
+
 ### Assign apps to the user profile policy
 
 Link your [OIDC app](#what-you-need) to the policy to display the registration link to end users. Perform these steps after the policy is created to ensure that the sign-up flow is accessible for the correct target audience.
@@ -65,8 +67,6 @@ Link your [OIDC app](#what-you-need) to the policy to display the registration l
 1. On the User profile policies page, click the pencil icon next to your new user profile policy.
 1. Click the **Apps** tab and click **Add an App to This Policy**.
 1. Click **Apply** next to your app, and then click **Close**.
-
-> **Note**: Email verification is required by default. If you would prefer to not verify the user's email as part of the registration process, clear that option.
 
 ## Set the information a user supplies
 
@@ -105,6 +105,7 @@ Set user attributes to read-write before building your profile enrollment form. 
 
 To require user information in addition to name and email, add attributes to the profile enrollment form in your user profile policy. Users are prompted for information only if a required value is missing and progressive profiling is enabled (the default value).
 
+1. Go to **Security** > **User Profile Policies** and click the pencil icon next to your policy.
 1. In the **Profile enrollment form** section of your policy, click **Add form input**.
 1. Click **Choose an attribute from the Universal Directory** dropdown list, and then select an attribute, such as **Mobile phone (mobilePhone)**.
 
@@ -116,13 +117,13 @@ To require user information in addition to name and email, add attributes to the
 
 ### Create an authenticator enrollment policy
 
-Part of self-registration is the user setting up authenticators (for example, email, phone) that they use to validate their identity when they sign in. Create an authenticator enrollment policy to manage how and when your end users enroll authenticators when they sign up.
+Part of self-registration is the user setting up authenticators (for example, email or phone) that they use to validate their identity when they sign in. Create an authenticator enrollment policy to manage how and when your end users enroll authenticators when they sign up.
 
 1. Go to **Security** > **Authenticators** in the Admin Console.
 1. To add authenticators, click **Add authenticator**. See [Multifactor authentication](https://help.okta.com/okta_help.htm?type=oie&id=ext-about-authenticators) for detailed information on the supported authenticators.
 1. To create your authenticator enrollment policy, click the **Enrollment** tab. Then, use [Create an authenticator enrollment policy](https://help.okta.com/okta_help.htm?type=oie&id=ext-create-mfa-policy) to configure your policy.
 
-   > **Note**: When you set the values for specific authenticators, use **Optional** for some to allow users to choose their preferred factors during the sign-up process.
+   > **Note**: When you set the values for specific authenticators, use **Optional** for some to allow users to choose which authenticators to enroll during the sign-up process.
 
 ## Related Topics
 
