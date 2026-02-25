@@ -4,14 +4,32 @@
   <title>Okta Privileged Access API Release Notes</title>
   <link>https://developer.okta.com/docs/release-notes/2026-okta-privileged-access/</link>
   <description>Recent release notes for Okta Privileged Access API</description>
-  <pubDate>Fri, 20 Feb 2026 12:00:00 GMT</pubDate>
+  <pubDate>Wed, 25 Feb 2026 12:00:00 GMT</pubDate>
   
+    <item>
+      <title>Weekly release 2026.02.3</title>
+      <link>https://developer.okta.com/docs/release-notes/2026-okta-privileged-access/#weekly-release-2026-02-3</link>
+      <guid>https://developer.okta.com/docs/release-notes/2026-okta-privileged-access/#weekly-release-2026-02-3</guid>
+      <pubDate>Wed, 25 Feb 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[<a href="https://developer.okta.com/docs/release-notes/2026-okta-privileged-access/#server-account-reveal-password-configuration">Server Account reveal password configuration</a><br><a href="https://developer.okta.com/docs/release-notes/2026-okta-privileged-access/#new-system-log-event-for-password-rotation-changes">New System Log event for password rotation changes</a><br><a href="https://developer.okta.com/docs/release-notes/2026-okta-privileged-access/#new-password-management-options-for-on-premises-saas-app-accounts-is-ea">New password management options for on-premises SaaS app accounts is EA</a>]]></description>
+    </item>
+  
+
+    <item>
+      <title>New password management options for on-premises SaaS app accounts is EA</title>
+      <link>https://developer.okta.com/docs/release-notes/2026-okta-privileged-access/#new-password-management-options-for-on-premises-SaaS-app-accounts-is-EA</link>
+      <guid>https://developer.okta.com/docs/release-notes/2026-okta-privileged-access/#new-password-management-options-for-on-premises-SaaS-app-accounts-is-EA</guid>
+      <pubDate>Thu, 01 Jan 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[]]></description>
+    </item>
+  
+
     <item>
       <title>Weekly release 2026.02.2</title>
       <link>https://developer.okta.com/docs/release-notes/2026-okta-privileged-access/#weekly-release-2026-02-2</link>
       <guid>https://developer.okta.com/docs/release-notes/2026-okta-privileged-access/#weekly-release-2026-02-2</guid>
       <pubDate>Fri, 20 Feb 2026 12:00:00 GMT</pubDate>
-      <description><![CDATA[<a href="https://developer.okta.com/docs/release-notes/2026-okta-privileged-access/#enhanced-filtering-for-the-sudo-commands-api">Enhanced filtering for Sudo Commands API</a><br><a href="https://developer.okta.com/docs/release-notes/2026-okta-privileged-access/#new-list-secret-templates-endpoint-is-ga">New List Secret Templates endpoint is GA</a>]]></description>
+      <description><![CDATA[<a href="https://developer.okta.com/docs/release-notes/2026-okta-privileged-access/#enhanced-filtering-for-the-sudo-commands-api">Enhanced filtering for Sudo Commands API</a><br><a href="https://developer.okta.com/docs/release-notes/2026-okta-privileged-access/#new-list-secret-templates-endpoint-is-ga">New List Secret Templates endpoint is GA</a><br><a href="https://developer.okta.com/docs/release-notes/2026-okta-privileged-access/#server-account-reveal-password-configuration-is-ga">Server Account reveal password configuration is GA</a>]]></description>
     </item>
   
 
