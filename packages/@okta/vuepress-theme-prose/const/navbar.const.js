@@ -426,13 +426,16 @@ export const guides = [
               },
             ],
           },
+          { title: "Enable and configure a sign-up form",
+            guideName: "enable-configure-signupform"
+          },
           {
             title: "Set up your org",
-            guideName: "set-up-org",
+            guideName: "set-up-org"
           },
           {
             title: "Access policies",
-            guideName: "configure-access-policy",
+            guideName: "configure-access-policy"
           },
           {
             title: "Global session and authn policies",
@@ -456,7 +459,7 @@ export const guides = [
           },
           {
             title: "Device signal collection policies",
-            guideName: "device-signal-collection-policies",
+            guideName: "device-signal-collection-policies"
           },
           {
             title: "Test your access policies",
@@ -464,7 +467,7 @@ export const guides = [
           },
           {
             title: "Policy and rule prioritization",
-            guideName: "policy-rule-prioritization",
+            guideName: "policy-rule-prioritization"
           },
           {
             title: "Add an external identity provider",

@@ -45,6 +45,7 @@ guides:
  - device-authorization-grant
  - embedded-siw
  - enable-cors
+ - enable-configure-signupform
  - enable-express-configuration
  - event-hook-filtering
  - event-hook-hookdeck

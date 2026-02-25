@@ -45,33 +45,15 @@ Self-service registration allows users to sign up to an app by themselves. In th
 Configure your Okta org to accept self-registration with the password, email, and/or phone factors.
 
 1. See <StackSnippet snippet="setupyourorglink" inline />.
-1. [Create a user profile policy](#create-a-user-profile-policy)
-1. [Set the Email and Phone authenticators as optional enrollment factors](#set-the-email-and-phone-authenticators-as-optional-enrollment-factors)
-
-### Create a user profile policy
-
-Create a policy for self-registration:
-
-1. Open the Admin Console for your org.
-1. Go to **Security** > **User Profile Policies**, and click **Add user profile policy**.
-1. Enter a policy **Name**, and click **Save**.
-1. Click the pencil icon next to your new policy.
-1. Ensure that **Self-service registration** is set to **Allowed**.
-1. Click **Manage apps**.
-1. Click **Add an App to This Policy**.
-1. Click **Apply** next to your app, and then click **Close**.
-
-> **Note:** See [configure user profile policies](https://help.okta.com/okta_help.htm?type=oie&id=ext-create-profile-enrollment) for more user profile policy options.
+1. [Create a user profile policy](https://developer.okta.com/docs/guides/enable-configure-signupform/main/#create-a-user-profile-policy).
+1. [Set the Email and Phone authenticators as optional enrollment factors](#set-the-email-and-phone-authenticators-as-optional-enrollment-factors).
 
 ### Set the email and phone authenticators as optional enrollment factors
 
 1. Go to **Security** > **Authenticators** to view the available authenticators.
 1. Select the **Enrollment** tab.
 1. Click **Edit** under **Default Policy**.
-1. Go to the **Effective factors** section of the **Edit Policy** dialog:
-   1. Set **Email** to **Optional**.
-   [[style="list-style-type:lower-alpha"]]
-   1. Set **Phone** to **Optional**.
+1. Go to the **Effective factors** section of the **Edit Policy** dialog and set **Email** and **Phone** to **Optional**.
 1. Click **Update Policy**.
 
 ## Summary of steps
@@ -82,7 +64,7 @@ Create a policy for self-registration:
 
 <StackSnippet snippet="integrationsteps" />
 
-## Send a confirmation email even if the email authenticator is disabled
+## Send a confirmation email even if the authenticator is disabled
 
 Even when only the password factor is required for an Okta app, you can still send a confirmation email.
 
