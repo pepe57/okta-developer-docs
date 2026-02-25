@@ -105,7 +105,9 @@ To set up your Svelte app, you need to first set up the Svelte project:
 
 ## Use Auth JS with Svelte
 
-In the final part of this guide, we're going to use AuthJS with our Svelte application to enable a basic, self-registration flow with Okta. In your IDE, navigate to your terminal application and run 
+Enable a basic, self-registration flow with Okta in this section using AuthJS with the Svelte app.
+
+ In your IDE, navigate to your terminal application and run 
 `npm install @okta/okta-auth-js`.
 Once that’s done, navigate to `src/lib` and create an ‘okta’ folder. [NB: In prod, you probably would not follow this folder naming convention; you’d probably do something along the lines of ‘providers/iam/okta’, to allow for the addition of new IAM providers. You’d probably also create a standardized IAMProvider class that any new provider can implement. However, for the sake of this tutorial, we’re keeping it very simple.]
 In the okta folder, create a ‘config.ts’ file and an index.ts file. Your config.ts file should look like so:
