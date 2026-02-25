@@ -18,13 +18,8 @@ Okta Privileged Access (OPA) is available for both Okta Classic Engine and Okta 
 
 | Change | Expected in Preview Orgs | Expected in Production |
 |--------|--------------------------| -----------------------|
-| [Server Account reveal password configuration](#server-account-reveal-password-configuration)| February 19, 2026 | February 25, 2026|
 |[New System Log event for password rotation changes](#new-system-log-event-for-password-rotation-changes)| February 25, 2026| |
 |[New password management options for on-premises SaaS app accounts is EA](#new-password-management-options-for-on-premises-saas-app-accounts-is-ea)|February 25, 2026| |
-
-#### Server Account reveal password configuration
-
-Authorized end users can now retrieve managed server account passwords through the [Server Accounts API](https://developer.okta.com/docs/api/openapi/opa/opa/tag/server-accounts/#tag/server-accounts ). <!-- OKTA-963820 Server Accounts for Reveal preview date: Feb 19, 2025, FF: pam_server_account_reveal_password-->
 
 #### New System Log event for password rotation changes
 
@@ -50,7 +45,7 @@ See the [SaaS Application Accounts](https://developer.okta.com/docs/api/openapi/
 |--------|--------------------------| -----------------------|
 | [Enhanced filtering for Sudo Commands API](#enhanced-filtering-for-the-sudo-commands-api) | February 12, 2026 | February 17, 2026 |
 | [New List Secret Templates endpoint is GA](#new-list-secret-templates-endpoint-is-ga)| February 11, 2026 | February 18, 2026 |
-| [Server Account reveal password configuration is GA](#server-account-reveal-password-configuration-is-ga) | February 19, 2026 |  |
+| [Server Account reveal password configuration is GA](#server-account-reveal-password-configuration-is-ga) | February 19, 2026 | February 25, 2026  |
 
 #### Enhanced filtering for the Sudo Commands API
 
