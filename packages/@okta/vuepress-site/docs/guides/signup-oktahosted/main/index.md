@@ -55,33 +55,56 @@ Configure an access policy for your app:
 1. Go to **Security** > **API**.
 1. Click **default** for the Okta default custom authorization server.
 1. Click the **Access Policies** tab, and then click **Add New Access Policy** or **Add Policy** if you haven't added any policies yet.
-Next you
-Input a name of your choosing. I’d go with “Svelte Policy” as my policy name. 
-Add a simple description to the description field
-in the “assign to” field, click on “The following clients:” and type in your app name and select it from the list. Mine is “Svelte”, so I’d select that.
-Now we have our policy, next we add a simple rule for development purposes. To do that:
-Click on “Add Rule”,
-Add in a name, I’m using “Default Rule”.
-Finally, click “Create rule”.
-The default settings in the rule are good enough to go off on.
+1. Give the policy a name, such as **Svelte Policy** and add a simple description.
+1. Select **The following clients** in the **Assign to** field, type the name of your app, and then select it from the list.
+1. Click **Create Policy**.
 
-Lastly, we need to set up the user profile policies to allow Self Service Registration (The user can sign up using the Okta-hosted login widget). To do this, from the Admin Console:
-Navigate to Security > User Profile Policies.
-Click on “Add user profile Policies” and enter a name of your choosing. Mine is “Self Service Registration”. 
-Next, click on the edit icon next to your policy. In the enrollment tab > Profile Enrollment, click on “Edit”.
-Make sure the Self-service registration field is “Allowed”, 
-Also, make sure that in the email verification field, “Required before access is granted” is set to false. (NB: we’re doing this to enable us to test with fake emails during development; once your app is live, you’d want to turn this back on).
-Click “Save” at the bottom. Next, go to the Apps tab, click “Add an App to This Policy”, navigate to your app, then click apply, then close.
-With that, we’re done!
-Svelte Set Up
-Next up, we’re going to set up a basic Auth layout in our Svelte application. Firstly, we need to set up the Svelte project. To do this:
-Create a new directory in a place of your choosing, and name it something you like. I’m keeping mine simple - “svelte-app”. Open up the folder in your favourite IDE
-Next, run this command in your terminal: `npx sv create .` `npx sv create` creates the Svelte project; the “.” argument lets the create command know it should use the current directory.
-You might get a prompt that the directory is not empty, but continue with the setup. (This usually happens because most IDEs create hidden config files once you open a directory with them; it’s not a big deal).
-Select “SvelteKit minimal” as your template.
-When it prompts you to “Add type checking with TypeScript”, select “Yes, using TypeScript syntax”. In the second-to-last prompt, you can add as many libraries as you want to the project; I’m just going to ignore it.
-When the setup script asks what package manager you want to install dependencies with, choose npm. With that, the base Svelte setup is done.
-Use Auth JS with Svelte
+#### Add a rule
+
+Add a simple rule to your policy.
+
+1. On the **default** authorization server page, select your policy on the left.
+1. Click **Add rule**.
+1. Enter a name for the rule, and leave all of the defaults.
+1. Click **Create rule**.
+
+### Set up a user profile policy
+
+Set up a user profile policy to allow your users to perform Self-Service Registration (SSR). This enables the user to sign up for your app using the Okta-hosted Sign-In Widget.
+
+1. Go to **Security** > **User Profile Policies**.
+1. Click **Add user profile policy** and enter a policy name, such as **Self-Service Registration**.
+1. Click **Save**.
+1. Click pencil icon next to your policy to make edits.
+1. In the **Profile Enrollment** section of the **Enrollment** tab, click **Edit**.
+1. Verify that **Self-service registration** is set to **Allowed**.
+1. Clear the **Required before access is granted** checkbox for **Email verification**.
+
+   > **Note**: In this example, you want to test with fake emails during development. After your app is live, turn this back on.
+
+1. Click **Save**.
+1. Select the **Apps** tab, and then click **Add an App to This Policy**.
+1. Locate your app, click **Apply** next to it, and click **Close**.
+
+> **Note**: See [Enabled and configure a sign-up form]() for more detailed information on configuring SSR.
+
+## Set up the Svelte project
+
+To set up your Svelte app, you need to first set up the Svelte project:
+
+1. Create a new directory in a place of your choosing and name it.
+1. Open up the folder in your favorite [IDE](#what-you-need).
+1. Run the following command in your terminal: `npx sv create .` This command creates the Svelte project. Tthe `.` argument lets the create command know it should use the current directory.
+
+> **Note**: You may get a prompt that the directory isn't empty. This happens because most IDEs create hidden config files after you open a directory with them. Continue with the setup.
+
+1. Select `SvelteKit minimal` as your template.
+1. When you see the prompt to `Add type checking with TypeScript`, select `Yes, using TypeScript syntax`.
+1. Optional. At the next-to-last prompt, add as many libraries as you want to the project.
+1. When the setup script prompts you for the package manager that you want to install dependencies with, select `npm`. This completes the basic Svelte setup.
+
+## Use Auth JS with Svelte
+
 In the final part of this guide, we're going to use AuthJS with our Svelte application to enable a basic, self-registration flow with Okta. In your IDE, navigate to your terminal application and run 
 `npm install @okta/okta-auth-js`.
 Once that’s done, navigate to `src/lib` and create an ‘okta’ folder. [NB: In prod, you probably would not follow this folder naming convention; you’d probably do something along the lines of ‘providers/iam/okta’, to allow for the addition of new IAM providers. You’d probably also create a standardized IAMProvider class that any new provider can implement. However, for the sake of this tutorial, we’re keeping it very simple.]
