@@ -19,16 +19,6 @@ See also [Introduction to the Okta Aerial API](https://developer.okta.com/docs/a
 
 ## February
 
-### Weekly release 2026.02.3
-
-| Change | Expected in Preview Orgs |
-|--------|--------------------------|
-| [Bug fixed in 2026.02.3](#bug-fixed-in-2026-02-3)| February 25, 2026 |
-
-#### Bug fixed in 2026.02.3
-
-You can call the Apply an access request condition API with an invalid access condition. (OKTA-1091926)
-
 ### Monthly release 2026.02.0
 <!-- Published on: 2026-02-04T12:00:00Z -->
 

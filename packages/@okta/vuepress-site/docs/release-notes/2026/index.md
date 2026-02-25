@@ -11,17 +11,6 @@ title: Okta Classic Engine API release notes 2026
 
 ## February
 
-### Weekly release 2026.02.3
-<!-- Published on: 2026-02-20T12:00:00Z -->
-
-| Change | Expected in Preview Orgs |
-|--------|--------------------------|
-| [Bug fixed in 2026.02.3](#bug-fixed-in-2026-02-3)| February 25, 2026 |
-
-#### Bug fixed in 2026.02.3
-
-You could send customized test emails from the default Okta email domain using the [Send a test email endpoint](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/CustomTemplates/#tag/CustomTemplates/operation/sendTestEmail). (OKTA-115232)
-
 ### Weekly release 2026.02.2
 <!-- Published on: 2026-02-20T12:00:00Z -->
 
