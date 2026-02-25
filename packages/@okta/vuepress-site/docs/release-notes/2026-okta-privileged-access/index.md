@@ -18,8 +18,9 @@ Okta Privileged Access (OPA) is available for both Okta Classic Engine and Okta 
 
 | Change | Expected in Preview Orgs | Expected in Production |
 |--------|--------------------------| -----------------------|
-| [Server Account reveal password configuration](#server-account-reveal-password-configuration)| February 19, 2026 | |
+| [Server Account reveal password configuration](#server-account-reveal-password-configuration)| February 19, 2026 | February 25, 2026|
 |[New System Log event for password rotation changes](#new-system-log-event-for-password-rotation-changes)| February 25, 2026| |
+|[New password management options for on-premises SaaS app accounts is EA](#new-password-management-options-for-on-premises-saas-app-accounts-is-ea)|February 25, 2026| |
 
 #### Server Account reveal password configuration
 
@@ -27,7 +28,20 @@ Authorized end users can now retrieve managed server account passwords through t
 
 #### New System Log event for password rotation changes
 
-A new System Log event (pam.app.config.update) has been added to track changes to the password rotation strategy for apps connected to Okta Privileged Access. You can use this event to track configuration changes that impact the management of credentials for connected app accounts.
+A new System Log event (`pam.app.update`) has been added to track changes to the password rotation strategy for apps connected to Okta Privileged Access. You can use this event to track configuration changes that impact the management of credentials for connected app accounts. See [Event Types](/docs/reference/api/event-types/).
+
+### New password management options for on-premises SaaS app accounts is EA
+
+You can now configure password rotation for managed on-premises app accounts that require a current password to rotate. This enhancement also allows authorized users to manually override stored passwords in Okta Privileged Access to resolve out-of-sync credentials.
+New API endpoints allow you to list, retrieve, and update these strategies:
+
+• `GET /v1/teams/{team_name}/connections/saas_apps`
+
+• `GET /v1/teams/{team_name}/connections/saas_apps/{saas_app_instance_id}`
+
+• `PATCH /v1/teams/{team_name}/connections/saas_apps/{saas_app_instance_id}`
+
+See the [SaaS Application Accounts](https://preview.redoc.ly/oktadev/jg-OKTA-1095144-rotate_saas_pwd_with_last_pwd/openapi/opa/opa/tag/saas-app-accounts/#tag/saas-app-accounts).
 
 ### Weekly release 2026.02.2
 <!-- Published on: 2026-02-20T12:00:00Z -->
