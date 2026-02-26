@@ -4,14 +4,14 @@ excerpt: Sign users up for your app by redirecting them to an Okta-hosted enroll
 layout: Guides
 ---
 
-Learn how to implement a Self-Service Registration (SSR) flow on a page using the Okta-hosted Sign-In Widget. Then, learn how to customize an out-of-the-box experience for your app using the Okta Auth JavaScript SDK (Auth JS).
+Learn how to implement a Self-Service Registration (SSR) flow on a page using the Okta-hosted Sign-In Widget. Then, learn how to customize an out-of-the-box experience for your app using the Okta Auth JavaScript SDK.
 
 ---
 
 #### Learning outcomes
 
-* Understand how to set up a basic Svelte/SvelteKit application.
-* Understand how to use Okta Auth JS in a JavaScript web app.
+* Understand how to set up a basic Svelte/SvelteKit app.
+* Understand how to use Okta Auth JavaScript SDK in a JavaScript web app.
 * Understand how Okta app integrations and access policies work.
 
 #### What you need
@@ -21,11 +21,17 @@ Learn how to implement a Self-Service Registration (SSR) flow on a page using th
 * [Okta Integrator Free Plan org](https://developer.okta.com/signup)
 * Familiarity with the [Okta Auth JavaScript SDK](https://github.com/okta/okta-auth-js/blob/master/docs/idx.md#introduction)
 
-In this guide, we’re going to set up a lightweight Svelte application with basic layout capabilities.
+---
 
 ## Okta setup
 
-overview here
+Before writing any code, you must configure your Okta org to recognize and manage your Svelte app. This section walks you through three essential backend configurations:
+
+* **Create an App Integration**: Establishes your Svelte app's identity within Okta. You define its redirect URIs and obtain a Client ID, which is crucial for connecting your front end to Okta.
+
+* **Configure an Access Policy**: Grants your new app permission to request authentication tokens from an Okta authorization server. It acts as a security checkpoint for your API.
+
+* **Enable Self-Service Registration (SSR)**: Sets up a policy that allows new users to create their own accounts directly from the Okta Sign-In Widget, a key feature for public-facing apps.
 
 ### Create the app integration for Svelte
 
@@ -33,20 +39,18 @@ The Okta app integration represents your Svelte app in your Okta org and lets yo
 
 1. In the Admin Console, go to **Applications** > **Applications**.
 1. Click **Create App Integration**, and then select **OIDC - OpenID Connect** as the **Sign-in method**.
-1. Select **Single-Page Application** as your application type, then click **Next**.
+1. Select **Single-Page Application** as your app type, then click **Next**.
 1. Give the app integration a name, for example, **Svelte**.
 1. Make sure that **Authorization Code** is selected as the grant type.
 1. Add the local development URI of `http://localhost:5000` for the following fields:
     * **Sign-in redirect URIs**
     * **Logout redirect URIs**
-    * **Base URIs** in the **Trusted Origins** section.
+    * **Base URIs** in the **Trusted Origins** section
 1. In the **Assignments** section, select **Allow everyone in your organization to access** for controlled access.
 1. Clear the **Enable immediate access with Federation Broker Mode** checkbox, and then click **Save**.
 1. Make note of your app integration's Client ID. You need this later.
 
-> **Note**: For more detailed information on app integration options, see [Create OpenID Connect app integrations](https://help.okta.com/okta_help.htm?type=oie&id=ext_Apps_App_Integration_Wizard-oidc)
-
-??show you how to edit the redirect URLs for a more seamless out-of-the-box sign-in experience in your app.??
+> **Note**: For more detailed information on app integration options, see [Create OpenID Connect app integrations](https://help.okta.com/okta_help.htm?type=oie&id=ext_Apps_App_Integration_Wizard-oidc).
 
 ### Configure an access policy
 
@@ -65,7 +69,7 @@ Add a simple rule to your policy.
 
 1. On the **default** authorization server page, select your policy on the left.
 1. Click **Add rule**.
-1. Enter a name for the rule, and leave all of the defaults.
+1. Enter a name for the rule, and leave the defaults.
 1. Click **Create rule**.
 
 ### Set up a user profile policy
@@ -86,36 +90,48 @@ Set up a user profile policy to allow your users to perform Self-Service Registr
 1. Select the **Apps** tab, and then click **Add an App to This Policy**.
 1. Locate your app, click **Apply** next to it, and click **Close**.
 
-> **Note**: See [Enabled and configure a sign-up form]() for more detailed information on configuring SSR.
+> **Note**: See [Enabled and configure a sign-up form](/docs/guides/enable-configure-signupform/main/) for more detailed information on configuring SSR.
 
 ## Set up the Svelte project
 
 To set up your Svelte app, you need to first set up the Svelte project:
 
-1. Create a new directory in a place of your choosing and name it.
-1. Open up the folder in your favorite [IDE](#what-you-need).
-1. Run the following command in your terminal: `npx sv create .` This command creates the Svelte project. Tthe `.` argument lets the create command know it should use the current directory.
+1. Create a directory for your project and open it in your [IDE](#what-you-need).
+1. In your IDE's integrated terminal, run the SvelteKit creation script: `npx sv create .`
 
-> **Note**: You may get a prompt that the directory isn't empty. This happens because most IDEs create hidden config files after you open a directory with them. Continue with the setup.
+   The `.` argument instructs the script to use the current directory.
 
-1. Select `SvelteKit minimal` as your template.
-1. When you see the prompt to `Add type checking with TypeScript`, select `Yes, using TypeScript syntax`.
-1. Optional. At the next-to-last prompt, add as many libraries as you want to the project.
-1. When the setup script prompts you for the package manager that you want to install dependencies with, select `npm`. This completes the basic Svelte setup.
+   > **Note**: You may see a prompt that the directory isn't empty. This is expected if your IDE has created hidden configuration files. It's safe to continue.
+
+   The setup script presents several choices. Use the following options to configure your project:
+
+   * **Template**: `SvelteKit minimal`
+   * **Type checking**: `Yes, using TypeScript syntax`
+   * **Additional libraries**: `None` (for this example)
+   * **Package manager**: `npm`
+
+1. Finally, install the project dependencies: `npm install`
 
 ## Use Auth JS with Svelte
 
-Enable a basic, self-registration flow with Okta in this section using AuthJS with the Svelte app.
+Enable a basic, self-registration flow with Okta in this section using Auth JS with a Svelte app.
 
- In your IDE, navigate to your terminal application and run 
-`npm install @okta/okta-auth-js`.
-Once that’s done, navigate to `src/lib` and create an ‘okta’ folder. [NB: In prod, you probably would not follow this folder naming convention; you’d probably do something along the lines of ‘providers/iam/okta’, to allow for the addition of new IAM providers. You’d probably also create a standardized IAMProvider class that any new provider can implement. However, for the sake of this tutorial, we’re keeping it very simple.]
-In the okta folder, create a ‘config.ts’ file and an index.ts file. Your config.ts file should look like so:
+### Set up the Okta Auth JavaScript SDK
+
+1. In your IDE, go to your terminal and run: `npm install @okta/okta-auth-js`.
+2. Go to `src/lib` and create an `okta` folder.
+
+   > **Note**: In production, the folder naming convention would be different, for example, `providers/iam/okta`. This allows for the addition of new IAM providers. Also, you would create a standardized `IAMProvider` class that any new provider can implement.
+
+3. In the `okta` folder, create a `config.ts` file and an `index.ts` file. Your `config.ts` file should look something like the following example:
+
+#### Config.ts example
+
 ```ts
 export default {
- issuer: `https://${yourOktaDomain}/oauth2/default`, //For example, `"https://example.okta.com/oauth2/default"`
- baseUrl: `https://${yourOktaDomain}`, //For example, `"https://example.okta.com/oauth2/default"`
- clientId: `${yourClientID}`, // for example, `0oa2am3kk1CraJ8xO1d7`
+ issuer: `https://${yourOktaDomain}/oauth2/default`,
+ baseUrl: `https://${yourOktaDomain}`,
+ clientId: `${yourClientID}`,
  scopes: ['openid', 'email', 'profile'],
  storage: 'sessionStorage',
  redirectUri: 'http://localhost:5000',
@@ -126,9 +142,14 @@ export default {
  useDynamicForm: false,
  uniq: Date.now() + Math.round(Math.random() * 1000), // to guarantee a unique state
 };
-
 ```
-Notice that the redirectUri property is the same as the sign-in redirect URIs that we configured earlier. In your index.ts, write this:
+
+> **Note**: The `redirectUri` property is the same as the sign-in redirect URI that you configured in the [Create the app integration for Svelte](#create-the-app-integration-for-svelte) section.
+
+4. In the `index.ts`, add some helper functions to help with authentication:
+
+#### Helper functions example
+
 ```ts
 import config from "$lib/okta/config";
 import OktaAuth from "@okta/okta-auth-js";
@@ -148,7 +169,6 @@ async function login() {
  return await authClient.token.getWithRedirect({ responseType: [ 'id_token' ] });
 }
 
-
 export async function user(): Promise<null | UserClaims> {
  if (authClient.isLoginRedirect()) {
   const { tokens } = await authClient.token.parseFromUrl();
@@ -157,7 +177,6 @@ export async function user(): Promise<null | UserClaims> {
  const tokenManager: TokenManagerInterface = authClient.tokenManager;
  const accessToken: AccessToken = await tokenManager.get('accessToken') as AccessToken;
 
-
  if (!accessToken) {
   return null;
  }
@@ -165,41 +184,44 @@ export async function user(): Promise<null | UserClaims> {
  return await authClient.token.getUserInfo(accessToken, idToken);
 }
 
-
 export const logout = async () => await authClient.signOut();
-
 
 export default {
  user, logout, login
 }
 ```
-This file gives us a couple of helper functions to help us with our authentication. 
-The ‘login()’ function uses AuthJS to redirect us to the Okta-hosted login widget.
-The ‘user()’ function first checks if we are in a login redirect page, i.e., the user has logged in, and we’ve been redirected back to the home page. If this is true, it retrieves the auth token and saves it, then returns the user information.
-The ‘logout()’ function just logs us out of Okta.
-The last three lines export the functions in an easy-to-use object. Now we’re going to use this exported objectto set up a basic registration flow.
 
-In `routes/+layout.svelte`, we’re going to create a basic navbar.
-Your script tag should look like this:
+* `login()`: Uses Auth JS to redirect the user to the Okta-hosted Sign-In Widget to begin the authentication flow
+* `user()`: Handles the post-authentication redirect from Okta, processes the authentication tokens, and retrieves the authenticated user's profile information
+* `logout()`: Clears the user's local session and signs them out of Okta
+
+The final lines bundle these functions into a single, importable object to provide a reusable authentication service for your app.
+
+5. In `routes/+layout.svelte`, create a basic navigation bar. Your script tag should look something like the following example:
+
+#### Script tag example
+
 ```ts
 import favicon from '$lib/assets/favicon.svg';
 import provider from "$lib/okta";
 import { onMount } from "svelte";
-
 
 onMount(async () => {
  let response = await provider.user();
  if (response) user = response;
 })
 
-
 let user = $state(null);
 let { children } = $props();
 ```
-As you can see, the user function does all of the work of checking if the user is authenticated, getting said user info, and then saving it in state. This is done in the `onMount()` callback function; that way, we only try to check for the user after the component is mounted.
 
- In the HTML section, this is just after the `</svlete:head>` tag type in this:
-```svelte
+   The user function checks if the user is authenticated, gets the user information, and then saves it in state using the [`onMount()`](https://svelte.dev/docs/svelte/lifecycle-hooks#onMount) callback function. Saving in state enables you to only check for the user after the component is mounted.
+
+6. In the HTML section, add the following navigation bar code just after the `</svlete:head>` tag:
+
+#### Svelte component example
+
+```html
 <nav>
  <p class="logo">Svelte</p>
  <ul class="nav">
@@ -219,13 +241,17 @@ As you can see, the user function does all of the work of checking if the user i
  </div>
 </nav>
 ```
-This is a simple nav bar that shows the user's name after they have been logged in. Two buttons use the `logout` and `login` functions we created earlier. Finally, create a `<style>` tag and add in some css like so:
+
+   This is a simple navigation bar that displays the user's name after they sign in. The two buttons use the `logout` and `login` functions that you created earlier.
+
+7. Finally, create a `<style>` tag and add some CSS:
+
+#### CSS example
 
 ```css
 * {
  font-family: 'Roboto', sans-serif;
 }
-
 
 nav {
  display: flex;
@@ -234,14 +260,10 @@ nav {
  border-bottom: 1px solid #c7b8b8;
 }
 
-
 nav ul {
  display: flex;
  list-style: none;
 }
-
-
-
 
 p.logo {
  margin: auto 5px;
@@ -252,11 +274,9 @@ p.logo {
  font-family: 'Montserrat', serif;
 }
 
-
 nav ul li {
  margin: 10px;
 }
-
 
 nav ul li a {
  text-decoration: none;
@@ -264,15 +284,11 @@ nav ul li a {
  text-transform: uppercase;
 }
 
-
 nav ul li a:hover {
  text-decoration: underline;
 }
 
-
 button.btn-2 {
-
-
  cursor: pointer;
  outline: 0;
  display: inline-block;
@@ -289,13 +305,11 @@ button.btn-2 {
  border-color: #0d6efd;
 }
 
-
 button.btn-2:hover {
  color: #fff;
  background-color: #0d6efd;
  border-color: #0d6efd;
 }
-
 
 button.btn {
  cursor: pointer;
@@ -311,18 +325,15 @@ button.btn {
  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-
 button.btn:hover {
  color: #fff;
  background-color: #0b5ed7;
  border-color: #0a58ca;
 }
 
-
 .login-btn {
  margin-top: 10px;
 }
-
 
 button.logout-btn {
  padding: 6px 12px;
@@ -331,23 +342,46 @@ button.logout-btn {
  margin: auto 10px;
 }
 
-
 .user {
  display: flex;
  margin-top: 10px;
 }
 ```
-Let's run the dev server to see our page: `npm run dev – –port 5000`, keep in mind the two double slashes in the command. Those run our dev server on localhost:5000 like we set up on our Okta org and in `src/lib/okta/config.ts`.
-At the end of the day, you should end up with a page that looks something like this: 
 
-If you followed the tutorial judiciously, when you click the login button, you should be redirected to the Okta-hosted login widget where you can log in or register, and once that’s done, you should be redirected back to a page that looks like this:
+### Run and test the app
 
+With all the components configured, you're ready to test the end-to-end authentication flow.
 
+1. Start the Svelte development server by running this command in your terminal: `npm run dev -- --port 5000`
 
-If you look in the earlier code, we have a line that looks like this `{#if user}....{/if}`. You can use this if you pass in the user info as props to child components, and you can conditionally show the information. You can also use the AuthJS  AuthStateManager to do this by doing something like this in your Svelte component script
+   The `--port 5000` flag is required because it matches the sign-in redirect URI that you configured in your [Okta app integration](#create-the-app-integration-for-svelte) and `src/lib/okta/config.ts` file.
+
+   Your app launches on `localhost:5000` and displays the sign-in page.
+
+   <div class="three-quarter border">
+   ![Image of Svelte app with Login button](/img/siw/Svelteapp1.png)
+   </div>
+
+1. Click **Login** to test the authentication flow. You’re redirected to the Okta-hosted Sign-In Widget.
+
+1. Register for a new account. After you authenticate, Okta redirects you back to your app, which now displays the user's information.
+
+   <div class="three-quarter border">
+   ![Image of Svelte app after redirect](/img/siw/Svelteapp2.png)
+   </div>
+
+### Display content dynamically
+
+You can use the [<div class="auth"> section](#svelte-component-example) to conditionally display content based on the user's authentication state in a couple of ways:
+
+* Passing [`props`](https://svelte.dev/docs/svelte/$props): The standard Svelte approach is to pass the user information as props from a parent component to a child component.
+
+* Using `AuthStateManager`: The Okta Auth JavaScript SDK provides an `AuthStateManager` to access the state directly.
+
+To implement the `AuthStateManager` method, add the following code to your Svelte component script:
+
 ```ts
 authClient = new OktaAuth(config);
-
 
 // Subscribe to the authState change event.
 authClient.authStateManager.subscribe(function(authState) {
@@ -357,9 +391,17 @@ authClient.authStateManager.subscribe(function(authState) {
   return;
  }
 
-
  // Render authenticated view
 });
 ```
-With this, we have created a simple Auth flow using the Okta-hosted sign-in widget and Svelte to allow user login and registration, all powered by Okta.
-Till next time!
+
+## Related topics
+
+You have now implemented a self-service registration flow with Svelte and the Okta-hosted Sign-In Widget.
+
+To learn more, explore our resources on Self-Service Registration and the Sign-In Widget:
+
+* [Enable and configure a sign-up form](/docs/guides/enable-configure-signupform/main/)
+* [The Okta Sign-In Widget](/docs/concepts/sign-in-widget/)
+<!-- * [Plan self-service registration flows](/docs/concepts/self-service-registration/)-->
+<!-- * [Create a self-hosted sign-up form by embedding the Sign-In Widget]() -->
