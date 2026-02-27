@@ -374,11 +374,11 @@ With all the components configured, you're ready to test the end-to-end authenti
 
 You can use the [<div class="auth"> section](#svelte-component-example) to conditionally display content based on the user's authentication state in a couple of ways:
 
-* Passing [`props`](https://svelte.dev/docs/svelte/$props): The standard Svelte approach is to pass the user information as props from a parent component to a child component.
+* Pass [`props`](https://svelte.dev/docs/svelte/$props): The standard Svelte approach is to pass the user information as props (properties) from a parent component to a child component.
 
-* Using `AuthStateManager`: The Okta Auth JavaScript SDK provides an `AuthStateManager` to access the state directly.
+* Use `AuthStateManager`: The Okta Auth JavaScript SDK provides an `AuthStateManager` to access the state directly.
 
-To implement the `AuthStateManager` method, add the following code to your Svelte component script:
+The `AuthStateManager` method subscribes to the state:
 
 ```ts
 authClient = new OktaAuth(config);
@@ -395,6 +395,43 @@ authClient.authStateManager.subscribe(function(authState) {
 });
 ```
 
+However, since you have a [helper object](#helper-functions-example), move the subscribe to the `authState` change event to the helper object:
+
+1. Go to `src/lib/okta/index.ts` and add the following file before the exports at the bottom:
+
+```ts
+import type { AuthState } from "@okta/okta-auth-js";
+
+//...rest of the code
+export const subscribe = (onAuthChange: (authState: AuthState) => void) => {
+ authClient.start();
+ authClient.authStateManager.subscribe(onAuthChange);
+}
+```
+
+2. Add the function into your export. It should look something like the following example:
+
+```ts
+export default {
+ user, logout, login, subscribe
+}
+```
+
+3. Use the subscribe method in `src/routes/+layout.svelte` in the `onMount` callback:
+
+```ts
+let isAuthenticated = $state(false);
+onMount(async () => {
+ let response = await provider.user();
+/* provider.user() has to run before provider.subscribe */
+ provider.subscribe((auth) => isAuthenticated = auth.isAuthenticated);
+ //...
+})
+```
+
+You can now use the `isAuthenticated` variable in any layout component. This eliminates the need to pass `isAuthenticated` as a `prop`. Instead, call the subscribe method within a component's `onMount()` function to access the authentication state directly.
+
+> **Note**: The `provider.user()` has to run before `provider.subscribe` because `provider.user` contains `authClient.token.isLoginRedirect()`. This methodt has to run before `authClient.authStateManager.subscribe()`.
 ## Related topics
 
 You have now implemented a self-service registration flow with Svelte and the Okta-hosted Sign-In Widget.
