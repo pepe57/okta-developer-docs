@@ -435,7 +435,7 @@ onMount(async () => {
 
 You can now use the `isAuthenticated` variable in any layout component. This eliminates the need to pass `isAuthenticated` as a `prop`. Instead, call the subscribe method within a component's `onMount()` function to access the authentication state directly.
 
-> **Note**: The `provider.user()` has to run before `provider.subscribe` because `provider.user` contains `authClient.token.isLoginRedirect()`. This methodt has to run before `authClient.authStateManager.subscribe()`.
+> **Note**: The `provider.user()` has to run before `provider.subscribe` because `provider.user` contains `authClient.token.isLoginRedirect()`. This method has to run before `authClient.authStateManager.subscribe()`.
 ## Related topics
 
 You have now implemented a self-service registration flow with Svelte and the Okta-hosted Sign-In Widget.
