@@ -358,17 +358,21 @@ With all the components configured, you're ready to test the end-to-end authenti
 
    Your app launches on `localhost:5000` and displays the sign-in page.
 
-   <div class="three-quarter border">
-   ![Image of Svelte app with Login button](/img/siw/Svelteapp1.png)
-   </div>
+<div class="three-quarter border">
+
+![Image of Svelte app with Login button](/img/siw/svelteapp1.png)
+
+</div>
 
 1. Click **Login** to test the authentication flow. You’re redirected to the Okta-hosted Sign-In Widget.
 
 1. Register for a new account. After you authenticate, Okta redirects you back to your app, which now displays the user's information.
 
-   <div class="three-quarter border">
-   ![Image of Svelte app after redirect](/img/siw/Svelteapp2.png)
-   </div>
+<div class="three-quarter border">
+
+![Image of Svelte app after redirect](/img/siw/svelteapp2.png)
+
+</div>
 
 ### Display content dynamically
 
@@ -395,7 +399,7 @@ authClient.authStateManager.subscribe(function(authState) {
 });
 ```
 
-However, since you have a [helper object](#helper-functions-example), move the subscribe to the `authState` change event to the helper object:
+However, since you have a [Helper object](#helper-functions-example), move the `subscribe` method to the Helper object:
 
 1. Go to `src/lib/okta/index.ts` and add the following file before the exports at the bottom:
 
