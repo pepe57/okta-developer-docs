@@ -90,7 +90,7 @@ Set up a user profile policy to allow your users to perform Self-Service Registr
 1. Select the **Apps** tab, and then click **Add an App to This Policy**.
 1. Locate your app, click **Apply** next to it, and click **Close**.
 
-<!--> **Note**: See [Enable and configure a sign-up form](/docs/guides/enable-configure-signupform/main/) for more detailed information on configuring SSR.-->
+> **Note**: See [Enable and configure a sign-up form](/docs/guides/enable-configure-signupform/main/) for more detailed information on configuring SSR.
 
 ## Set up the Svelte project
 
@@ -376,7 +376,7 @@ With all the components configured, you're ready to test the end-to-end authenti
 
 ### Display content dynamically
 
-You can use the [<div class="auth"> section](#svelte-component-example) to conditionally display content based on the user's authentication state in a couple of ways:
+You can use the [div class="auth" section](#svelte-component-example) to conditionally display content based on the user's authentication state in a couple of ways:
 
 * Pass [`props`](https://svelte.dev/docs/svelte/$props): The standard Svelte approach is to pass the user information as props (properties) from a parent component to a child component.
 
@@ -442,6 +442,7 @@ You have now implemented a self-service registration flow with Svelte and the Ok
 
 To learn more, explore our resources on Self-Service Registration and the Sign-In Widget:
 
-[The Okta Sign-In Widget](/docs/concepts/sign-in-widget/)
+* [Enable and configure a sign-up form](/docs/guides/enable-configure-signupform/main/)
+* [The Okta Sign-In Widget](/docs/concepts/sign-in-widget/)
 <!-- * [Plan self-service registration flows](/docs/concepts/self-service-registration/)-->
 <!-- * [Create a self-hosted sign-up form by embedding the Sign-In Widget]() -->
