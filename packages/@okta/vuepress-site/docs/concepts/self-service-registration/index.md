@@ -15,7 +15,7 @@ Learn about self-service registration (SSR) and three key aspects that you can c
 
 Self-service registration allows users to create an account and sign in to an app on their own.
 
-A combination of policies that you can set in the Admin Console or with the Policies API lets you choose which data to collect during registration. You also choose the authenticators available for enrollment and the authentication requirements for enrolling those authenticators. You can also use an inline hook and custom code for further customization.
+A combination of policies that you set in the Admin Console or with the Policies API lets you choose which data to collect during registration. You also choose the authenticators available for enrollment and the authentication requirements for enrolling those authenticators. You can also use an inline hook and custom code for further customization.
 
 For more information about SSR, see:
 
@@ -28,16 +28,16 @@ For more information about SSR, see:
 
 SSR is disabled by default. There are two main policies that control SSR.
 
-* **User profile policies:** This policy type controls the attributes that are collected when users register and has a setting to enable SSR. The default user profile policy doesn't allow SSR
-* **Authenticator enrollment policies:** This policy type controls which authenticators are available for users to enroll during registration. The default authenticator enrollment policy requires users to create a password. You can add other authenticators to the default policy or create an authenticator enrollment policy.
+* **User profile policies:** This policy type controls the attributes that are collected when users register and has a setting to enable SSR. The default user profile policy doesn't allow SSR.
+* **Authenticator enrollment policies:** This policy type controls which authenticators are available for users to enroll during registration. The default authenticator enrollment policy requires users to create a password. Add other authenticators to the default policy or create an authenticator enrollment policy.
 
-You can enable a basic SSR flow by creating a new user profile policy. These are the default settings for a new user profile policy that allows self-service registration:
+Enable a basic SSR flow by creating a new user profile policy. These are the default settings for a new user profile policy that allows self-service registration:
 
 * The [user profile policy](/docs/concepts/policies/#user-profile-policies) prompts users for their first name, family name, and email address. Those are the basic [Universal Directory (UD)](/docs/concepts/universal-directory/) attributes required to create a user profile and activate an Okta account.
 * Users must verify their email address before the account is activated.
 * Progressive enrollment is enabled. If you add other UD attributes as optional, then users are prompted to provide that information when they sign in again, after their initial registration.
 * There’s one default identifier that allows users to sign in with their username. You can add other identifiers. See [Multiple identifiers](https://help.okta.com/okta_help.htm?type=oie&id=ext-multiple-ids).
-* The registration form has default text and labels. You can customize the text and labels to match your brand and use case.
+* The registration form has default text and labels. Customize the text and labels to match your brand and use case.
 * The user profile policy isn't assigned to any apps. You must assign the policy to an app for users to see the registration form when they try to sign in to that app.
 
 #### Default SSR flow diagram
@@ -52,7 +52,7 @@ This diagram shows the default SSR flow when you enable SSR with a user profile 
 
 ## Ways to customize your SSR flow
 
-You can customize how Okta handles SSR through a combination of [policies](#use-policies-to-control-ssr-flows), an [inline hook](#use-an-inline-hook-to-customize-the-ssr-flow), and [widget customization](#customize-the-widget-with-the-code-editor).
+Customize how Okta handles SSR through a combination of [policies](#use-policies-to-control-ssr-flows), an [inline hook](#use-an-inline-hook-to-customize-the-ssr-flow), and [widget customization](#customize-the-widget-with-the-code-editor).
 
 ### Use policies to control SSR flows
 
@@ -69,9 +69,9 @@ There are two other policies that don't have the same direct impact on the SSR f
 
 #### User profile policy
 
-The [user profile policy](/docs/concepts/policies/#user-profile-policies) controls the attributes collected during registration. You can use this to map specific data from your UD to the registration form.
+The [user profile policy](/docs/concepts/policies/#user-profile-policies) controls the attributes collected during registration. Use this to map specific data from your UD to the registration form.
 
-For example, if your app requires a business-specific attribute, such as a department name or a specific organization ID, you can set it as a required field in the user profile policy to ensure it's captured when users register.
+For example, if your app requires a business-specific attribute, such as a department name or a specific organization ID, set it as a required field in the user profile policy to ensure that it's captured when users register.
 
 > **Tip:** Use progressive enrollment to avoid overwhelming users with too many fields during registration. Start with the most essential attributes and then prompt for additional information when the user signs in again. See [Progressive enrollment](https://help.okta.com/okta_help.htm?type=oie&id=ext-pe-policies).
 >
@@ -79,15 +79,15 @@ For example, if your app requires a business-specific attribute, such as a depar
 
 #### Authenticator enrollment policy
 
-The [authenticator enrollment policy](/docs/concepts/policies/#authenticator-enrollment-policies) defines which authenticators are available for users to register and use. You can set certain authenticators as required or optional during registration, and you can specify which authenticators are available based on user attributes or other conditions.
+The [authenticator enrollment policy](/docs/concepts/policies/#authenticator-enrollment-policies) defines which authenticators are available for users to register and use. Set certain authenticators as required or optional during registration, and specify which authenticators are available based on user attributes or other conditions.
 
-For example, you can configure the policy to allow or require users to enroll a passkey when they create their account to ensure high-assurance authentication from day one. You can also disable the Password authenticator if you have other higher-assurance authenticators that you want your users to enroll.
+For example, configure the policy to allow or require users to enroll a passkey when they create their account to ensure high-assurance authentication from day one. You can also disable the Password authenticator if you have other higher-assurance authenticators that you want your users to enroll.
 
 #### Okta account management policy
 
-The [Okta account management policy](/docs/concepts/policies/#okta-account-management-policy) controls the security requirements for enrolling authenticators. You can use this policy to require users to verify their email or phone number before they can enroll certain authenticators. Or you can require them to authenticate with an existing authenticator before enrolling a new one.
+The [Okta account management policy](/docs/concepts/policies/#okta-account-management-policy) controls the security requirements for enrolling authenticators. Use this policy to require users to verify their email or phone number before they can enroll certain authenticators. Or require them to authenticate with an existing authenticator before enrolling a new one.
 
-For example, you can allow users to register a passkey by requiring them to authenticate with a password first.
+For example, allow users to register a passkey by requiring them to authenticate with a password first.
 
 > **Note:** The Okta account management policy also controls how users unenroll authenticators, recover their passwords, and unlock their accounts.
 
@@ -117,13 +117,15 @@ The hook triggers after the user submits the registration form but before the us
 
 Consider the following examples for ways to customize your SSR flow using a registration inline hook:
 
-* **Domain validation:** Validate the domain of a user trying to register and deny requests from unauthorized or public email providers. See [Set up for profile enrollment (SSR) scenario](/docs/guides/registration-inline-hook/nodejs/main/#set-up-for-profile-enrollment-ssr-scenario) for an example of how to do this.
-* **Input restrictions:** Use an inline hook to restrict certain inputs in the registration form. For example, you can check the `login` attribute for forbidden characters (like emojis or specific symbols) and deny access if a user attempts to register with them.
 * **Verify user identity with an access key:** Check a user-supplied access key or code against an external system before allowing registration or access.
 * **Enrich a profile with customer ID from a CRM:** Retrieve and add a unique customer identifier from your CRM system to the user’s profile during the registration or update process.
 * **Trigger an approval flow:** Initiate a manager or administrator approval process before finalizing user provisioning or access.
 * **Trigger marketing content:** Add new users to an automated marketing sequence based on user attributes or certain events.
 * **Block known bad actors:** Integrate with a third-party threat intelligence service to block registration attempts from known malicious IP addresses or email domains.
+* **Domain validation:** Validate the domain of a user trying to register and deny requests from unauthorized or public email providers. See [Set up for profile enrollment (SSR) scenario](/docs/guides/registration-inline-hook/nodejs/main/#set-up-for-profile-enrollment-ssr-scenario) for an example of how to do this. 
+  * Instead of using an inline hook, you can also use an Okta Expression Language expression in the user profile policy to block certain email domains.
+* **Input restrictions:** Use an inline hook to restrict certain inputs in the registration form. For example, check the `login` attribute for forbidden characters (like emojis or specific symbols) and deny access if a user attempts to register with them. 
+  * Alternatively, create a more interactive registration form by using [custom code in the widget](#customize-the-widget-with-the-code-editor) to restrict users from entering forbidden characters.
 
 For implementation details, see:
 
@@ -133,7 +135,7 @@ For implementation details, see:
 
 #### SSR flow diagram with registration inline hook
 
-This diagram shows where the registration inline hook fits into the SSR flow. The inline hook triggers when a user enters their email address, and the domain is checked by the external service.
+This diagram shows where the registration inline hook fits into the SSR flow. The inline hook triggers when a user submits a profile enrollment form (or self-service registration form).
 
 Review the examples in the previous section for ideas on how to use the registration inline hook.
 
@@ -151,7 +153,7 @@ With custom code, you can extend the SSR flow with your own scripts and styles. 
 
 However, the process for adding custom code depends on your deployment model.
 
-* **Okta-hosted model:** When using this model, the SSR flow uses the [Okta-hosted Sign-In Widget](/docs/concepts/sign-in-widget/#okta-hosted-sign-in-widget-recommended). You can add custom code to the page template using the code editor in the Admin Console. This allows you to inject scripts and styles directly into the Okta-hosted page while Okta continues to manage the core widget logic and security updates.
+* **Okta-hosted model:** When using this model, the SSR flow uses the [Okta-hosted Sign-In Widget](/docs/concepts/sign-in-widget/#okta-hosted-sign-in-widget-recommended). Add custom code to the page template using the code editor in the Admin Console. This allows you to inject scripts and styles directly into the Okta-hosted page while Okta continues to manage the core widget logic and security updates.
 * **Self-hosted model:** When using this model, the SSR flow uses the [self-hosted Sign-In Widget](/docs/concepts/sign-in-widget/#self-hosted-sign-in-widget). You manage the code within your app's own source files. You host the widget library yourself and attach lifecycle hooks to the widget instance directly within your app's logic before calling the `.showSignInToGetTokens()` or `.renderEl()` methods.
 
 Okta recommends the Okta-hosted model for most use cases because it balances security with ease of use. It uses the Okta-hosted widget as its backend and frontend foundation, which offers a secure and customizable experience with minimal maintenance.
@@ -166,7 +168,7 @@ See:
 
 #### How to insert custom code into the Okta-hosted widget
 
-You must have a [custom domain](/docs/guides/custom-url-domain/main/#about-okta-domain-customization) configured to customize the Okta-hosted widget. After you configure a custom domain, you can insert your own scripts and styles into the registration page. Okta continues to manage the core Widget logic and security updates. After you configure a custom domain, you can insert your own scripts and styles into the registration page. Okta continues to manage the core widget logic and security updates.
+You must have a [custom domain](/docs/guides/custom-url-domain/main/#about-okta-domain-customization) configured to customize the Okta-hosted widget. After you configure a custom domain, insert your own scripts and styles into the registration page. Okta continues to manage the core Widget logic and security updates.
 
 [Use the code editor](/docs/guides/custom-widget/main/#use-the-code-editor) in the Admin Console to [add your own scripts](/docs/guides/custom-widget/main/#add-your-own-scripts) and styles to the page. You insert your custom logic by modifying the configuration before the widget renders. When using custom code, ensure that your custom CSS and third-party scripts are loaded in the `<head>` of the code editor before the widget runs.
 
@@ -174,7 +176,7 @@ Review the following examples for ideas on how to customize your SSR flow.
 
 #### Use custom code to brand the SSR experience
 
-Custom code is ideal for injecting brand-specific content or legal requirements. For example, you can use the `afterRender` lifecycle event to inject inline links for your **Terms of Service** or **Privacy Policy** directly into the footer of the widget.
+Custom code is ideal for injecting brand-specific content or legal requirements. For example, use the `afterRender` lifecycle event to inject inline links for your **Terms of Service** or **Privacy Policy** directly into the footer of the widget.
 
 #### Use custom code to build interactive form elements
 
@@ -188,7 +190,7 @@ You can also use custom scripts to build more interactive form elements. This in
 
 This diagram shows two different ways to insert custom code into the SSR flow. A light and dark mode toggle is available and custom links are added to the footer of the widget after it renders.
 
-Using custom code in the SSR flow lets you enhance the user experience in different ways. For example, you can use JavaScript to add other interactive elements to the registration form.
+Using custom code in the SSR flow lets you enhance the user experience in different ways. For example, use JavaScript to add other interactive elements to the registration form.
 
 <div class="three-quarter border">
 
