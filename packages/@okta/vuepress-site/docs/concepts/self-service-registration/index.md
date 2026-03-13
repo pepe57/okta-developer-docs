@@ -93,7 +93,7 @@ For example, allow users to register a passkey by requiring them to authenticate
 
 #### SSR flow diagram with policies
 
-This diagram shows how the user profile policy, authenticator enrollment policy, and Okta account management policy work together to control the SSR flow.
+This diagram shows an example of how the user profile policy, authenticator enrollment policy, and Okta account management policy work together to control the SSR flow.
 
 * The user profile policy adds the **Business Department** field to the registration form.
 * The authenticator enrollment policy makes the passkeys authenticator available during registration. Make other authenticators available for enrollment by adding them to the relevant authenticator enrollment policy.
@@ -117,14 +117,14 @@ The hook triggers after the user submits the registration form but before the us
 
 Consider the following examples for ways to customize your SSR flow using a registration inline hook:
 
-* **Verify user identity with an access key:** Check a user-supplied access key or code against an external system before allowing registration or access.
 * **Enrich a profile with customer ID from a CRM:** Retrieve and add a unique customer identifier from your CRM system to the user’s profile during the registration or update process.
+* **Verify user identity with an access key:** Check a user-supplied access key or code against an external system before allowing registration or access.
 * **Trigger an approval flow:** Initiate a manager or administrator approval process before finalizing user provisioning or access.
 * **Trigger marketing content:** Add new users to an automated marketing sequence based on user attributes or certain events.
 * **Block known bad actors:** Integrate with a third-party threat intelligence service to block registration attempts from known malicious IP addresses or email domains.
 * **Domain validation:** Validate the domain of a user trying to register and deny requests from unauthorized or public email providers. See [Set up for profile enrollment (SSR) scenario](/docs/guides/registration-inline-hook/nodejs/main/#set-up-for-profile-enrollment-ssr-scenario) for an example of how to do this.
-* **Input restrictions:** Use an inline hook to restrict certain inputs in the registration form. For example, check the `login` attribute for forbidden characters (like emojis or specific symbols) and deny access if a user attempts to register with them. 
-  * Alternatively, create a more interactive registration form by using [custom code in the widget](#customize-the-widget-with-the-code-editor) to restrict users from entering forbidden characters.
+* **Input restrictions:** Use an inline hook to restrict certain inputs in the registration form. For example, check the `login` attribute for forbidden characters (like emojis or specific symbols) and deny access if a user attempts to register with them.
+  * Alternatively, use [custom code in the widget](#customize-the-widget-with-the-code-editor) to create a more interactive registration form to restrict users from entering forbidden characters.
 
 For implementation details, see:
 
@@ -134,7 +134,7 @@ For implementation details, see:
 
 #### SSR flow diagram with registration inline hook
 
-This diagram shows where the registration inline hook fits into the SSR flow. The inline hook triggers when a user submits a profile enrollment form (or self-service registration form).
+This diagram shows an example of where the registration inline hook fits into the SSR flow. The inline hook triggers when a user submits a profile enrollment form (or self-service registration form).
 
 Review the examples in the previous section for ideas on how to use the registration inline hook.
 
@@ -187,7 +187,7 @@ You can also use custom scripts to build more interactive form elements. This in
 
 #### SSR flow diagram with custom code
 
-This diagram shows two different ways to insert custom code into the SSR flow. A light and dark mode toggle is available and custom links are added to the footer of the widget after it renders.
+This diagram shows an example of two different ways to insert custom code into the SSR flow. A light and dark mode toggle is available and custom links are added to the footer of the widget after it renders.
 
 Using custom code in the SSR flow lets you enhance the user experience in different ways. For example, use JavaScript to add other interactive elements to the registration form.
 
