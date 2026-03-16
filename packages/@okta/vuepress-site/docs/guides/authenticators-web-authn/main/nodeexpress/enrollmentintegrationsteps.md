@@ -117,7 +117,7 @@ The [Mustache](https://mustache.github.io/) template renders the following javas
 
 ### Build the parameter for creating a credential
 
-On page load, build the parameter needed to create a credential. A call to `OktaAuth.webauthn.buildCredentialCreationOptions()` in the client browser creates the parameter. Call the method with the `activateData` and `authenticatorEnrollments` variables that were set in the previous step.
+When the page loads, build the parameter that's needed to create a credential. A call to `OktaAuth.webauthn.buildCredentialCreationOptions()` in the client browser creates the parameter. Call the method with the `activateData` and `authenticatorEnrollments` variables that were set in the previous step.
 
 ```javascript
 const options = OktaAuth.webauthn.buildCredentialCreationOptions(activationData, authenticatorEnrollments);

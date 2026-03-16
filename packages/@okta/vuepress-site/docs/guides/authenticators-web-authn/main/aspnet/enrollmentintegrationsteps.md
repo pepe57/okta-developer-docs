@@ -65,7 +65,7 @@ catch (OktaException exception)
 
 ### Display a list of possible authenticator factors
 
-Build a page to display the list of authenticators (including a WebAuthn option). For example, in the sample app, a new `SelectAuthenticatorViewModel` is populated from the `Authenticators` collection returned by the `AuthenticationResponse`.
+Build a page to display the list of authenticators (including a WebAuthn option). For example, in the sample app, a `SelectAuthenticatorViewModel` populates from the `Authenticators` collection that's returned by the `AuthenticationResponse`.
 
 ```csharp
 public ActionResult SelectAuthenticator()
@@ -191,7 +191,7 @@ switch (enrollResponse?.AuthenticationStatus)
 
 ### Enroll authenticator through the browser
 
-Build a page with the challenge and user information from the website's backend servers. Then, call `navigator.credentials.create` to raise the prompt to enter a security key, validate with Windows Hello, Touch ID, or other WebAuthn Authenticator. For example, in the sample app, a new `EnrollWebAuthnViewModel` is populated from the `currentAuthenticator` object returned by the `enrollResponse` in the previous step.
+Build a page with the challenge and user information from the website's backend servers. Then, call `navigator.credentials.create` to raise the prompt to enter a security key, validate with Windows Hello, Touch ID, or other WebAuthn authenticator. For example, in the sample app, a `EnrollWebAuthnViewModel` populates from the `currentAuthenticator` object that's returned by the `enrollResponse` in the previous step.
 
 ```csharp
 var currentAuthenticator = (IAuthenticator)Session["currentWebAuthnAuthenticator"];
@@ -238,7 +238,7 @@ Then the call to `navigator.credentials.create` calls WebAuthn APIs in the brows
 
 </div>
 
-After the authenticator validates the user, it returns an `attestationObject` that contains the information needed to validate the registration event. It also contains a `clientDataJSON` object used to associate the new credential with the server and the browser.
+After the authenticator validates the user, it returns an `attestationObject` that contains the information needed to validate the registration event. It also contains a `clientDataJSON` object that associates the new credential with the server and the browser.
 
 ```js
     navigator.credentials.create({
@@ -300,14 +300,14 @@ Session["WebAuthnResponse"] = authnResponse;
 
 ### Enroll more authenticators or sign the user in
 
-Query the `AuthenticationStatus` property of the `AuthenticationResponse` object returned by `EnrollAuthenticatorAsync` to discover the status of the authentication process. Respond to two specific authenticator statuses:
+Query the `AuthenticationStatus` property of the `AuthenticationResponse` object that's returned by `EnrollAuthenticatorAsync` to discover the status of the authentication process. Respond to two specific authenticator statuses:
 
 * `AwaitingAuthenticatorEnrollment`
 * `Success`
 
 A status of `AwaitingAuthenticatorEnrollment` means that there are other authenticator types (Google, Okta Verify) the user has yet to enroll. Your app should then [display a list of those authenticators](#display-a-list-of-possible-authenticator-factors) that are still unenrolled and an option to skip further enrollment.
 
-A status of `Success` (or the user choosing to skip further authenticator enrollment) means that the user has now successfully enrolled their WebAuthn authenticator and is signed into the app. Call `AuthenticationHelper.GetIdentityFromTokenResponseAsync` to retrieve the OIDC claims information about the user and pass them into your app.
+A status of `Success` (or the user choosing to skip further authenticator enrollment) means that the user has now successfully enrolled their WebAuthn authenticator and is signed in to the app. Call `AuthenticationHelper.GetIdentityFromTokenResponseAsync` to retrieve the OIDC claims information about the user and pass them to your app.
 
 ```csharp
 var authnResponse = (IAuthenticationResponse)Session["webAuthnResponse"];

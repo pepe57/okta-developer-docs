@@ -1,4 +1,4 @@
-### Start enrollment flow
+### Start the enrollment flow
 
 Start the challenge flow with calls to `IDXAuthenticationWrapper.begin()` and `AuthenticationResponse.getProceedContext()`. Then send username and password to the Okta server with `IDXAuthenticationWrapper.authenticate()`.
 
@@ -11,7 +11,7 @@ authenticationResponse = idxAuthenticationWrapper.authenticate(
     new AuthenticationOptions(username, password.toCharArray()), proceedContext);
 ```
 
-### Display WebAuthn option
+### Display the WebAuthn option
 
 If you configure your Okta org as detailed in [Configuration updates](#update-configurations) and WebAuthn isn’t already [enrolled](#integrate-sdk-for-authenticator-enrollment) for the user, `authenticate()` returns an `AuthenticationResponse` object with `authenticationStatus` equal to `AWAITING_AUTHENTICATOR_ENROLLMENT_SELECTION` and a `webauthn` authenticator item in the `authenticators` array.
 
@@ -53,7 +53,7 @@ A simple authenticator selection page should look like this:
 
 </div>
 
-### Submit WebAuthn option
+### Submit the WebAuthn option
 
 When the user selects the WebAuthn option, call `IDXAuthenticationWrapper.enrollAuthenticator()` passing in `ProceedContext` and the authenticator ID returned from `AuthenticationResponse.authenticators[n].factors[n].id`.
 
@@ -98,7 +98,7 @@ The `AuthenticationResponse` object returned by `IDXAuthenticationWrapper.enroll
 }
 ```
 
-### Display page to create credentials
+### Display a page to create credentials
 
 Redirect the user to a page that creates the WebAuthn credentials and allow this page access to the `AuthenticationResponse` properties.
 

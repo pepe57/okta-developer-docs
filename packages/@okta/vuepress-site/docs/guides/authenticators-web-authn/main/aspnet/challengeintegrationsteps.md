@@ -1,4 +1,4 @@
-### Sign in and select authenticator
+### Sign in and select an authenticator
 
 The challenge flow follows the same first four steps as the [enrollment flow](/docs/guides/authenticators-web-authn/aspnet/main/#integrate-sdk-for-authenticator-enrollment):
 
@@ -11,7 +11,7 @@ The challenge flow follows the same first four steps as the [enrollment flow](/d
 
 When the user selects the WebAuthn Authenticator factor and clicks **Submit**, the form posts back to the `SelectAuthenticatorAsync` method. This checks whether the user is in the challenge flow or the enrollment flow.
 
-When in the challenge flow, a call is made to `idxClient.SelectChallengeAuthenticatorAsync`, using its `selectAuthenticatorOptions` parameter to pass in the WebAuthn authenticator factor ID.
+When in the challenge flow, the page calls `idxClient.SelectChallengeAuthenticatorAsync`, using its `selectAuthenticatorOptions` parameter to pass in the WebAuthn authenticator factor ID.
 
 ```csharp
 var selectAuthenticatorOptions = new SelectAuthenticatorOptions
@@ -48,11 +48,11 @@ switch (selectAuthenticatorResponse?.AuthenticationStatus)
 }
 ```
 
-### Display challenge page
+### Display a challenge page
 
 Build a page that takes the challenge and user information from Okta servers and calls `navigator.credentials.get` to raise a challenge prompt from the correct WebAuthn authenticator.
 
-For example, in the sample app, a new `VerifyWebAuthnViewModel` is populated from the `CurrentAuthenticatorEnrollment` property of the `AuthenticatorResponse` object returned in the previous step.
+For example, in the sample app, a `VerifyWebAuthnViewModel` populates from the `CurrentAuthenticatorEnrollment` property of the `AuthenticatorResponse` object that's returned in the previous step.
 
 ```csharp
 var currentAuthenticator = (IAuthenticator)Session["currentWebAuthnAuthenticator"];

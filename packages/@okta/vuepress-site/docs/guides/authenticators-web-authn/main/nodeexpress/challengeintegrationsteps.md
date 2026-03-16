@@ -9,7 +9,7 @@ The first step is to initiate a use case that requires authentication. This guid
   });
 ```
 
-### Handle WebAuthn the challenge response
+### Handle the WebAuthn challenge response
 
 If you configure your Okta org as detailed in [Configuration updates](#update-configurations) and the WebAuthn is already [enrolled](#integrate-sdk-for-authenticator-enrollment) for the user, `authenticate()` returns a response indicating that WebAuthn is required for verification. Specifically, `IdxTransaction` is returned with a `status` of `PENDING` and `nextStep.name` set to `challenge-authenticator`.
 
@@ -42,7 +42,7 @@ Also, `IdxTransaction` returns the challenge and other information to verify the
   }, }, }
 ```
 
-### Display page to verify WebAuthn credentials
+### Display a page to verify WebAuthn credentials
 
 Redirect the user to a page that verifies the WebAuthn credentials. Allow this page access to `Idxtransaction.nextStep.authenticator.contextualData.challengeData` and `Idxtransaction.nextStep.authenticatorEnrollments` retrieved in the previous step. The sample app accesses these objects by converting them to JSON strings and assigning them to server-side variables.
 
@@ -66,9 +66,9 @@ const authenticatorEnrollments = [{"type":"security_key","key":"webauthn","id": 
 
 ```
 
-### Build parameter for getting a credential
+### Build a parameter for getting a credential
 
-On page load, build the parameter needed to request the credential. A call to `OktaAuth.webauthn.buildCredentialRequestOptions()` in the client browser creates the parameter. Pass into the method the `challengeData` and `authenticatorEnrollments` variables set in the previous step.
+On page load, build the parameter that's needed to request the credential. A call to `OktaAuth.webauthn.buildCredentialRequestOptions()` in the client browser creates the parameter. Pass into the method the `challengeData` and `authenticatorEnrollments` variables set in the previous step.
 
 ```javascript
 const options = OktaAuth.webauthn.buildCredentialRequestOptions(challengeData, authenticatorEnrollments);
@@ -127,6 +127,7 @@ This call initiates the following steps:
       "clientDataJSON": Binary data ... ,
       "signature": Binary data ... ,
       "userHandle": Binary data ... ,
+      },
     "type": "public-key"
     }
     ```

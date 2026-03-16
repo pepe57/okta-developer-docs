@@ -70,7 +70,7 @@ AuthenticationResponse enrollResponse = idxAuthenticationWrapper
 
 ### Identify data for getting the credential
 
-The `AuthenticationResponse` object from `IDXAuthenticationWrapper.enrollAuthenticator()` has `authenticationStatus` set to `AWAITING_AUTHENTICATOR_VERIFICATION` that indicates the user must verify their WebAuthn credentials. The following code shows an example response. Also, `AuthenticationResponse` returns the challenge, credential ID, and other information needed to verify the WebAuthn credentials on the user's device.
+The `AuthenticationResponse` object from `IDXAuthenticationWrapper.enrollAuthenticator()` has `authenticationStatus` set to `AWAITING_AUTHENTICATOR_VERIFICATION`. This indicates that the user must verify their WebAuthn credentials. The following code shows an example response. Also, `AuthenticationResponse` returns the challenge, credential ID, and other information needed to verify the WebAuthn credentials on the user's device.
 
 ```json
 {
@@ -98,7 +98,7 @@ The `AuthenticationResponse` object from `IDXAuthenticationWrapper.enrollAuthent
 }
 ```
 
-### Display page to verify WebAuthn credentials
+### Display a page to verify WebAuthn credentials
 
 Redirect the user to a page that verifies the WebAuthn credentials returned in the `AuthenticationResponse.webAuthnParams` object; specifically `currentAuthenticator.contextualData.challengeData` and `webauthnCredentialId`.
 

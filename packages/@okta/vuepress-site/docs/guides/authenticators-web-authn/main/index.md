@@ -58,7 +58,7 @@ WebAuthn uses public-key cryptography to securely communicate and validate the u
 1. The website's back-end servers generate a challenge that's cryptographically signed using a public key.
 1. The encrypted challenge and other identifying information is sent to the client app running in the browser.
 1. The client app then calls WebAuthn APIs in the browser and passes the challenge to the authenticator for validation.
-1. The challenge and other data are validated, and the laptop's biometrics authenticator prompts the user for a fingerprint.
+1. The challenge and other data are validated, and the computer's biometrics authenticator prompts the user for a fingerprint.
 1. After the fingerprint is validated, the challenge is decrypted using a private key, repackaged with additional information, and re-encrypted using a private key.
 1. The repackaged challenge is sent to the server where it's decrypted using the public key. The server validates that it's the same challenge that started the flow.
 
@@ -81,7 +81,7 @@ Before you can start using WebAuthn, enable it in your Okta org and create an ap
 First, add the WebAuthn authenticator to your org and enable it.
 
 1. In the **Admin Console**, go to **Security > Authenticators** to show the available authenticators.
-2. If **FIDO2 (WebAuthn)** isn't in the list:
+2. Follow these steps if **FIDO2 (WebAuthn)** isn't in the list:
    1. Click **Add Authenticator**.
    2. Click **Add** on the **FIDO2 (WebAuthn)** tile.
    3. Verify that **User verification** is set to **Discouraged**.
@@ -104,7 +104,7 @@ First, add the WebAuthn authenticator to your org and enable it.
 
 ### Set your app integration to use the WebAuthn authenticator
 
-New apps are automatically assigned the shared default [app sign-in policy](https://help.okta.com/okta_help.htm?type=oie&id=ext-about-asop). This policy has a catch-all rule that allows a user access to the app using either one or two factors, depending on your org setup. In production, it becomes evident when you can share your authentication needs between apps.
+Apps are automatically assigned the shared default [app sign-in policy](https://help.okta.com/okta_help.htm?type=oie&id=ext-about-asop). This policy has a catch-all rule that allows a user access to the app using either one or two factors, depending on your org setup. In production, it becomes evident when you can share your authentication needs between apps.
 
 Create a policy specifically for your app for testing purposes.
 
@@ -113,16 +113,16 @@ Create a policy specifically for your app for testing purposes.
 3. Locate the catch-all rule of the new policy and select **Actions** > **Edit**.
 4. Select **Allowed after successful authentication**.
 5. Set **User must authenticate with** to **Password / IdP + Another factor**.
-6. For **Possession factor constraints are**:
+6. Follow these steps for the **Possession factor constraints are** setting:
    1. Select **Phishing resistant**.
    2. Verify that **FIDO2 (WebAuthn)** is listed in the box under **Additional factor types**. If it isn't listed, check that the authenticator has been enabled using steps 4 and 5 of [Add WebAuthn to your org](#add-webauthn-to-your-org).
    3. Click **Save**.
     [[style="list-style-type:lower-alpha"]]
 
-7. Select the **Applications** tab for your new policy, and then click **Add App**.
+7. Select the **Applications** tab for your policy, and then click **Add App**.
 8. Find your app in the list and click **Add** next to it.
 9. Click **Close**.
-10. Verify that the app is now listed in the **Applications** tab of the new policy.
+10. Verify that the app appears in the **Applications** tab of the new policy.
 
 <StackSnippet snippet="softwareversions" />
 
