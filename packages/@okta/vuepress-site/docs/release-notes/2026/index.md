@@ -11,6 +11,17 @@ title: Okta Classic Engine API release notes 2026
 
 ## March
 
+### Weekly release 2026.03.2
+<!-- Published on: 2026-03-18T12:00:00Z -->
+
+| Change | Expected in Preview Orgs |
+|--------|--------------------------|
+| [Bugs fixed in 2026.03.2](#bugs-fixed-in-2026-03-2)| March 18, 2026 |
+
+#### Bugs fixed in 2026.03.2
+
+
+
 ### Weekly release 2026.03.1
 <!-- Published on: 2026-03-11T12:00:00Z -->
 
