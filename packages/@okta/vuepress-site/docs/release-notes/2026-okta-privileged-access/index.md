@@ -18,9 +18,9 @@ Okta Privileged Access (OPA) is available for both Okta Classic Engine and Okta 
 
 | Change | Expected in Preview Orgs | Expected in Production |
 |--------|--------------------------| -----------------------|
-| [New password management options for on-premises SaaS app accounts](#new-password-management-options-for-on-premises-saas-app-accounts) | February 25, 2026 | March 18, 2026 |
+| [New password management options for on-premises SaaS app accounts is GA](#new-password-management-options-for-on-premises-saas-app-accounts-is-ga) | February 25, 2026 | March 18, 2026 |
 
-#### New password management options for on-premises SaaS app accounts
+#### New password management options for on-premises SaaS app accounts is GA
 
 You can now configure password rotation for managed on-premises app accounts that require a current password to rotate. This enhancement also allows authorized users to manually override stored passwords in Okta Privileged Access to resolve out-of-sync credentials. New API endpoints allow you to list, retrieve, and update these strategies:
 
