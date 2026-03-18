@@ -37,9 +37,9 @@ If you configured your Okta org correctly, you need to respond to two specific a
 * `AwaitingAuthenticatorEnrollment` that's covered in this section
 * `AwaitingChallengeAuthenticatorSelection` that's covered in the [challenge flow section](/docs/guides/authenticators-web-authn/aspnet/main/#integrate-sdk-for-authenticator-challenge).
 
-You can find the names of the authenticators available for enrollment or challenge in the `AuthenticationResponse` object's `Authenticators` collection. Redirect the user to a list of authenticators to select the WebAuthn authenticator for enrollment.
+The names of the authenticators available for enrollment or challenge can be found in the `AuthenticationResponse` object's `Authenticators` collection. Redirect the user to a list of authenticators to select the Passkeys authenticator for enrollment.
 
-> **Note**: The `isChallengeFlow` session variable is set to `false` if the user needs to enroll the WebAuthn authenticator, and `true` if they have already done so.
+> **Note**: The `isChallengeFlow` session variable is set to `false` if the user needs to enroll the Passkeys authenticator, and `true` if they have already done so.
 
 ```csharp
         case AuthenticationStatus.AwaitingAuthenticatorEnrollment:
@@ -133,19 +133,19 @@ The `viewModel` parameter is then consumed in a Razor page.
 </section>
 ```
 
-The WebAuthn factor option is listed as **Security Key or Biometric**, as shown in the following image.
+The Passkeys factor option is listed as **Security Key or Biometric**, as shown in the following image.
 
 <div class="three-quarter">
 
-![An authenticator list showing WebAuthn Authenticator available for use](/img/authenticators/dotnet-authenticators-webauthn-authenticator-list.png)
+![An authenticator list showing Passkeys Authenticator available for use](/img/authenticators/dotnet-authenticators-webauthn-authenticator-list.png)
 
 </div>
 
 ### Retrieve encrypted challenge and user information
 
-When the user selects the WebAuthn authenticator factor and clicks **Submit**, the form posts back to the `SelectAuthenticatorAsync` method. This checks whether the user is in challenge flow or enrollment flow.
+When the user selects the Passkeys authenticator factor and clicks **Submit**, the form posts back to the `SelectAuthenticatorAsync` method. This checks whether the user is in challenge flow or enrollment flow.
 
-When in Enrollment flow, a call is made to `idxClient.SelectEnrollAuthenticatorAsync`, using its `enrollAuthenticatorOptions` parameter to pass in the WebAuthn Authenticator factor ID.
+When in Enrollment flow, a call is made to `idxClient.SelectEnrollAuthenticatorAsync`, using its `enrollAuthenticatorOptions` parameter to pass in the Passkeys authenticator factor ID.
 
 ```csharp
 var enrollAuthenticatorOptions = new SelectEnrollAuthenticatorOptions

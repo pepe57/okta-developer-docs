@@ -14,7 +14,7 @@ authenticationResponse = idxAuthenticationWrapper.authenticate(
 
 ### Display the WebAuthn option
 
- If you configure your Okta org as detailed in [Configuration updates](#update-configurations) and WebAuthn is already [enrolled](#integrate-sdk-for-authenticator-enrollment) for the user, `authenticate()` returns an `AuthenticationResponse` object with `authenticationStatus` equal to `AWAITING_AUTHENTICATOR_SELECTION` and a `webauthn` authenticator item in the `authenticators` array.
+ If you configure your Okta org as detailed in [Configuration updates](#update-configurations) and Passkeys is already [enrolled](#integrate-sdk-for-authenticator-enrollment) for the user, `authenticate()` returns an `AuthenticationResponse` object with `authenticationStatus` equal to `AWAITING_AUTHENTICATOR_SELECTION` and a `webauthn` authenticator item in the `authenticators` array.
 
 ```json
 {
@@ -55,7 +55,7 @@ A simple authenticator selection page should look like this:
 
 ### Submit the WebAuthn authenticator option
 
-When the user selects the WebAuthn option, call `IDXAuthenticationWrapper.enrollAuthenticator()` passing in `ProceedContext` and the authenticator ID returned from `AuthenticationResponse.authenticators[n].factors[n].id`.
+When the user selects the Passkeys option, call `IDXAuthenticationWrapper.enrollAuthenticator()` passing in `ProceedContext` and the authenticator ID returned from `AuthenticationResponse.authenticators[n].factors[n].id`.
 
 ```java
 Optional<Authenticator> authenticatorOptional =
