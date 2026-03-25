@@ -11,7 +11,7 @@
     {
       "step_type": "request",
       "skipped": false,
-      "note": "Check SCIM Apps instance in Okta ",
+      "note": "Check your SCIM app instance in Okta ",
       "auth": {},
       "multipart_form": null,
       "headers": {
