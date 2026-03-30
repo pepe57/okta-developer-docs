@@ -32,11 +32,11 @@ To create a seamless experience where one passkey can work across multiple domai
 
 ### Add the Passkeys authenticator to your org policies
 
-Before configuring passkeys with the steps in this guide, ensure that the Passkeys (FIDO2 WebAuthn) authenticator is available in your org and added to your authenticator enrollment and app sign-in policies. Configuring the Passkeys (FIDO2 WebAuthn) authenticator in your policies enables users to register and sign in with passkeys.
+Before configuring passkeys with the steps in this guide, ensure that the Passkeys (FIDO2 WebAuthn) authenticator is available in your org and added to your authenticator enrollment and app sign-in policies. Configuring the Passkeys authenticator in your policies enables users to register and sign in with passkeys.
 
-1. [Add the Passkeys (FIDO2 WebAuthn) authenticator](https://help.okta.com/okta_help.htm?type=oie&id=csh-configure-webauthn) to your org.
-1. Add the Passkeys (FIDO2 WebAuthn) authenticator to an [authenticator enrollment policy](https://help.okta.com/okta_help.htm?type=oie&id=ext-create-mfa-policy) to allow users to register passkeys.
-1. Include the Passkeys (FIDO2 WebAuthn) authenticator in an [app sign-in policy](https://help.okta.com/okta_help.htm?type=oie&id=ext-create-auth-policy) to allow users to sign in with passkeys.
+1. [Add the Passkeys authenticator](https://help.okta.com/okta_help.htm?type=oie&id=csh-configure-webauthn) to your org.
+1. Add the Passkeys authenticator to an [authenticator enrollment policy](https://help.okta.com/okta_help.htm?type=oie&id=ext-create-mfa-policy) to allow users to register passkeys.
+1. Include the Passkeys authenticator in an [app sign-in policy](https://help.okta.com/okta_help.htm?type=oie&id=ext-create-auth-policy) to allow users to sign in with passkeys.
 
 ## Understand custom domains and passkeys
 

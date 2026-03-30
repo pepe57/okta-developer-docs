@@ -12,9 +12,9 @@ authenticationResponse = idxAuthenticationWrapper.authenticate(
     proceedContext);
 ```
 
-### Display the Passkeys (FIDO2 WebAuthn) option
+### Display the Passkeys authenticator option
 
- If you configure your Okta org as detailed in [Configuration updates](#update-configurations) and the Passkeys (FIDO2 WebAuthn) authenticator is already [enrolled](#integrate-sdk-for-authenticator-enrollment) for the user, `authenticate()` returns an `AuthenticationResponse` object with `authenticationStatus` equal to `AWAITING_AUTHENTICATOR_SELECTION` and a `webauthn` authenticator item in the `authenticators` array.
+ If you configure your Okta org as detailed in [Configuration updates](#update-configurations) and the Passkeys authenticator is already [enrolled](#integrate-sdk-for-authenticator-enrollment) for the user, `authenticate()` returns an `AuthenticationResponse` object with `authenticationStatus` equal to `AWAITING_AUTHENTICATOR_SELECTION` and a `webauthn` authenticator item in the `authenticators` array.
 
 ```json
 {
@@ -53,9 +53,9 @@ A simple authenticator selection page should look like this:
 
 </div>
 
-### Submit the Passkeys (FIDO2 WebAuthn) authenticator option
+### Submit the Passkeys authenticator option
 
-When the user selects the Passkeys (FIDO2 WebAuthn) option, call `IDXAuthenticationWrapper.enrollAuthenticator()` passing in `ProceedContext` and the authenticator ID returned from `AuthenticationResponse.authenticators[n].factors[n].id`.
+When the user selects the Passkeys authenticator option, call `IDXAuthenticationWrapper.enrollAuthenticator()` passing in `ProceedContext` and the authenticator ID returned from `AuthenticationResponse.authenticators[n].factors[n].id`.
 
 ```java
 Optional<Authenticator> authenticatorOptional =
