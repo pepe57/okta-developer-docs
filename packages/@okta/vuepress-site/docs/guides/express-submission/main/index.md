@@ -12,7 +12,7 @@ This guide provides an overview of the Express Submission workflow to submit Exp
 ### Learning outcomes
 
 * Understand Express Submission workflow for Auth0-enabled apps
-* Submit new Okta Integration Network (OIN) integrations or update existing ones using Express Configuration
+* Submit new Okta Integration Network (OIN) integrations or update existing integrations using Express Configuration
 
 ### What you need
 
@@ -63,14 +63,13 @@ Before starting the submission in the OIN Wizard, you must generate the Express 
 
 > **Note**: If you exited the setup after providing the Express Configuration information, you can return to your submission to continue. In the Admin Console, go to **Applications** > **Applications** > **Your OIN Integrations**. Select your draft integration, and then go to **Configure your integration** to download the PEM file again.
 
-
 ### Update an existing OIN integration
 
 #### Configure your integration in Okta
 
 1. Sign in to your [Okta Integrator Free Plan org](https://www.okta.com/integrator-free-plan/).
 2. Go to **Applications** > **Your OIN Integrations**.
-3. Select your published integration to update from the dashboard. Your published OIN submission appears in read-only mode.
+3. Select your published integration to update. Your published OIN submission appears in read-only mode.
 4. Click **Edit integration** from the **This integration is read-only** information box.
 5. Select your support protocols from the **Add integration capabilities** page. You must have at least OpenID Connect (OIDC) selected.
 6. Click **Add integration details** to go to the Integration details page.
