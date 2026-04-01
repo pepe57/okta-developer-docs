@@ -17,7 +17,7 @@ title: Okta Classic Engine API release notes 2026
 | Change | Expected in Preview Orgs |
 |--------|--------------------------|
 | [Slack integration for Identity Governance is GA in Production](#slack-integration-for-identity-governance-is-ga-in-production) | February 18, 2026 |
-| [Custom admin permissions for inline and event hooks is GA in Production](#custom-admin-permissions-for-inline-and-event-hooks-is-ga-in-production) | April 1, 2026 |
+| [Custom admin permissions for inline and event hooks is GA in Production](#custom-admin-permissions-for-inline-and-event-hooks-is-ga-in-production) | December 10, 2025 |
 | [Increase to the maximum access duration limit ](#increase-to-the-maximum-access-duration-limit) | April 1, 2026 |
 | [Developer documentation updates in 2026.04.0](#developer-documentation-updates-in-2026-04-0) | April 1, 2026 |
 | [Bug fixed in 2026.04.0](#bug-fixed-in-2026-04-0)| April 1, 2026 |
@@ -34,7 +34,7 @@ The following APIs support governance Slack integration settings and are availab
 
 #### Custom admin permissions for inline and event hooks is GA in Production
 
-The inline hook and event hook framework now supports read and write permissions for custom admin roles. This enhancement gives fine-grained access to manage inline and event hooks that previously required the super admin role. See [Hooks admin roles](https://developer.okta.com/docs/guides/hooks-best-practices/#hook-admin-roles). <!-- OKTA-1133787 HOOKS_PUBLIC_PERMISSIONS -->
+The inline hook and event hook framework now supports read and write permissions for custom admin roles. This enhancement gives fine-grained access to manage inline and event hooks that previously required the super admin role. See [Hooks admin roles](https://developer.okta.com/docs/guides/hooks-best-practices/#hook-admin-roles). <!-- OKTA-1133787 HOOKS_PUBLIC_PERMISSIONS preview date: December 10, 2025 -->
 
 #### Increase to the maximum access duration limit
 

@@ -19,14 +19,10 @@ title: Okta Identity Engine API release notes 2026
 | Change | Expected in Preview Orgs |
 |--------|--------------------------|
 | [Slack integration for Identity Governance is GA in Production](#slack-integration-for-identity-governance-is-ga-in-production) | February 18, 2026 |
-| [Entitlements Management and API service on the Admin Console Home page](#entitlements-management-and-api-service-on-the-admin-console-home-page) | April 1, 2026 |
-| [Custom admin permissions for inline and event hooks is GA in Production](#custom-admin-permissions-for-inline-and-event-hooks-is-ga-in-production) | April 1, 2026 |
-| [Authentication requirement for OIN Manager migration is GA in Production](#authentication-requirement-for-oin-manager-migration-is-ga-in-production) | April 1, 2026 |
-| [Support for custom risk reasons in User Risk API](#support-for-custom-risk-reasons-in-user-risk-api) | April 1, 2026 |
+| [Custom admin permissions for inline and event hooks is GA in Production](#custom-admin-permissions-for-inline-and-event-hooks-is-ga-in-production) | December 10, 2025 |
 | [Increase to the maximum access duration limit ](#increase-to-the-maximum-access-duration-limit) | April 1, 2026 |
 | [Skip counts for authenticator enrollment grace periods is GA in Preview](#skip-counts-for-authenticator-enrollment-grace-periods-is-ga-in-preview) | Feb 4, 2026 |
 | [Client update policy is GA in Preview is GA in Preview](#client-update-policy-is-ga-in-preview) | January 7, 2026 |
-| [Submit entitlement management integrations is GA in Production](#submit-entitlement-management-integrations-is-ga-in-production) | Nov 5, 2025 |
 | [Detection settings in session protection is GA in Production](#detection-settings-in-session-protection-is-ga-in-production) | December 10, 2025 |
 | [Passkeys rebrand is GA in Preview](#passkeys-rebrand-is-ga-in-preview) | Feb 4, 2026 |
 | [Maximum consecutive characters setting for passwords is GA in Production](#maximum-consecutive-characters-setting-for-passwords-is-ga-in-production) | Dec 10, 2025 |
@@ -44,21 +40,9 @@ The following APIs support governance Slack integration settings and are availab
 * Access Certification Slack integration setting: **Org Governance Settings** > [Update the org certification settings](https://developer.okta.com/docs/api/iga/openapi/governance-production-reference/org-governance-settings/updateorgcertificationsettings)
 ** Access Request Slack integration setting: **Access Request - V2** > **Request Settings** > [Update the org request settings](https://developer.okta.com/docs/api/iga/openapi/governance-production-requests-admin-v2-reference/request-settings/updateorgrequestsettingsv2) <!-- OKTA-1138055 Preview date: February 18, 2026 -->
 
-<!-- #### Entitlements Management and API service on the Admin Console Home page
-
-The **Home** page in the Admin Console now includes **Entitlements Management** and **API service** integrations. ISVs can initiate the full entitlements and API service integration flows and track progress directly from the **Home** page. A new **Entitlements** toggle enables fine-grained access control and real-time validation to ensure integrations are built with all security requirements. <!-- OKTA-1134610 -->
-
 #### Custom admin permissions for inline and event hooks is GA in Production
 
-The inline hook and event hook framework now supports read and write permissions for custom admin roles. This enhancement gives fine-grained access to manage inline and event hooks that previously required the super admin role. See [Hooks admin roles](https://developer.okta.com/docs/guides/hooks-best-practices/#hook-admin-roles). <!-- OKTA-1133787 HOOKS_PUBLIC_PERMISSIONS -->
-
-<!--#### Authentication requirement for OIN Manager migration is GA in Production
-
-After an admin migrates a SCIM integration from the OIN Manager to the OIN Wizard, the **Basic** option is visible in the **Authentication mode** dropdown list. However, you can't select this option for resubmission. Select a different authentication method to complete the submission.
-
-#### Support for custom risk reasons in User Risk API
-
-The PUT `/api/v1/users/{userId}/risk` [endpoint](https://developer.okta.com/docs/api/openapi/okta-management/management/tags/userrisk/other/upsertuserrisk) now accepts an optional `riskReason` field in the request body that provides a custom reason for the risk level change. If a value isn't provided, the parameter defaults to `override.by.admin`. <!--OKTA-1104360, OKTA-1141971 -->
+The inline hook and event hook framework now supports read and write permissions for custom admin roles. This enhancement gives fine-grained access to manage inline and event hooks that previously required the super admin role. See [Hooks admin roles](https://developer.okta.com/docs/guides/hooks-best-practices/#hook-admin-roles). <!-- OKTA-1133787 HOOKS_PUBLIC_PERMISSIONS Preview: December 10, 2025-->
 
 #### Increase to the maximum access duration limit
 
@@ -71,10 +55,6 @@ This feature allows admins to define a number of skips end users can defer enrol
 #### Client update policy is GA in Preview
 
 The Policies API now supports the `CLIENT_POLICY` type, enabling you to enforce or defer app updates across different device platforms. This lets you programmatically align app versions with internal change management processes. See the [Policies API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/Policy/#tag/Policy/operation/listPolicies) and [Release controls policy](https://help.okta.com/okta_help.htm?type=oie&id=ext-ov-release-controls). <!-- OKTA_VERIFY_RELEASE_CONTROL_POLICY OKTA-1036332 January 7, 2026 -->
-
-<!-- #### Submit entitlement management integrations is GA in Production
-
-Independent Software Vendors (ISVs) can now submit SCIM 2.0-based entitlement management integrations to the Okta Integration Network (OIN). This enhancement enables customers and IT admins to discover, manage, and assign fine-grained entitlements such as roles and permissions directly from Okta. By standardizing entitlement management, organizations can automate access assignments and streamline Identity Governance, ensuring that users receive the right access and roles without manual intervention. See [Submit an integration with the OIN Wizard](https://developer.okta.com/docs/guides/submit-oin-app/scim/main/). <!-- OKTA-1025782 ENTITLEMENTS_SUBMISSION Preview date: Nov 5, 2025 -->
 
 #### Detection settings in session protection is GA in Production
 
@@ -104,13 +84,7 @@ The SCIM FAQ doc has been rewritten to better match the other Concepts guides. S
 
 * When an admin added users to read-only groups using the Groups API (`PUT /api/v1/groups/{groupId}/users/{userId}`), the endpoint incorrectly returned HTTP 501 (Not Implemented) instead of HTTP 403 (Forbidden). (OKTA-1139611)
 
-<!-- * App instances incorrectly displayed the logo from the published version of a submission instead of the logo from the latest version. (OKTA-1136513)-->
-
-<!-- * ISVs saw an error couldn't submit their integrations for review despite passing all validation tests. (OKTA-1134528)-->
-
 * The Factors API didn’t return enrollment information about the Okta FastPass factor (`signed_nonce`) for some users who didn’t have Okta Verify with push notifications enrolled or enabled. (OKTA-1052073)
-
-<!-- * Integrator Free Tier (IFT) orgs incorrectly showed and enforced a 5-instance limit in the OIN Wizard. (OKTA-1044631)-->
 
 ## March
 
