@@ -46,7 +46,7 @@ The contents of the SCIM FAQ doc have been added to the new [SCIM integration co
 
 #### Bug fixed in 2026.04.0
 
-When admins added users to read-only groups using the Groups API (`PUT /api/v1/groups/{groupId}/users/{userId}`), the endpoint incorrectly returned HTTP 501 (Not Implemented) instead of HTTP 403 (Forbidden). (OKTA-1139611)
+When an admin added users to read-only groups using the Groups API (`PUT /api/v1/groups/{groupId}/users/{userId}`), the endpoint incorrectly returned HTTP 501 (Not Implemented) instead of HTTP 403 (Forbidden). (OKTA-1139611)
 
 ## March
 
