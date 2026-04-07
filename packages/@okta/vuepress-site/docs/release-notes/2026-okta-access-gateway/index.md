@@ -23,7 +23,7 @@ Access Gateway is available for both Okta Classic Engine and Okta Identity Engin
 
 #### Bug fixed in 2026.04.0
 
-The `postLogoutUrl` for an app couldn’t be updated using the Replace the application behavior configuration [endpoint](https://developer.okta.com/docs/api/openapi/oag/oag/tags/application-behavior/other/replacebehavior).
+The `postLogoutUrl` for an app couldn’t be updated using the Replace the application behavior configuration [endpoint](https://developer.okta.com/docs/api/openapi/oag/oag/tags/application-behavior/other/replacebehavior). (OKTA-1125316)
 
 ## March
 
