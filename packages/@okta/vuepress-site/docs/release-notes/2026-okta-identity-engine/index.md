@@ -24,7 +24,7 @@ title: Okta Identity Engine API release notes 2026
 
 * WebAuthn transport values, which specify the connection method that WebAuthn authenticators use to communicate with a user's device, weren’t returned by the List all authenticator enrollments [endpoint](https://developer.okta.com/docs/api/openapi/okta-management/management/tags/userauthenticatorenrollments/other/listauthenticatorenrollments). (OKTA-1118046)
 
-* The `AuthnRequestId` field wasn't included in authorization code flow and device code flow token request events in the System Log. (OKTA-1082636)
+* The `AuthnRequestId` field in the System Log wasn't included for authorization code flow and device code flow token request events. (OKTA-1082636)
 
 ### Monthly release 2026.04.0
 <!-- Published on: 2026-04-02T12:00:00Z -->
